@@ -1,8 +1,9 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Divider } from 'antd';
 
-const Footer = () => {
+export default function Footer () {
 
 let navigate = useNavigate();
 
@@ -11,10 +12,12 @@ let goForward = () => {navigate(+1)};
 
 return (
     <footer>
-        <h3>Stock quotes ticker is under construction!</h3>
+    
+    <Divider>
+        <code>Build under progress. Coders currently at work</code>
         <button onClick={goBack}>Back</button>
         <button onClick={goForward}>Forward</button>
+    </Divider>
+
     </footer>);
 };
-
-export default Footer;

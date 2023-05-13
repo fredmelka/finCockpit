@@ -1,22 +1,26 @@
 
 import React from 'react';
-import Root from '../components/Root';
+import About from '../routes/About.jsx';
+import ErrorPage from '../routes/Error.jsx';
+import Resources from '../routes/Resources.jsx';
+import Root from '../routes/Root.jsx';
+import Securities from '../routes/Securities.jsx';
+import Watchlist from '../routes/Watchlist.jsx';
 
 import { Route } from 'react-router-dom';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
-
 import './App.css';
 
+export default function App() {
 
-
-function App() {
-
-//declare here under the variable 'router' all routes and path for navigation and mapping
+//declare here variable 'router' under which all routes and paths are set for web navigation
 const router = createBrowserRouter( createRoutesFromElements(
-  <Route path='/' element={ <Root />}>
-        
-
+  <Route path='/' element={ <Root /> } errorElement={ <ErrorPage /> }>
+    <Route path='/about' element={ <About /> } />
+    <Route path='/securities' element={ <Securities /> } />
+    <Route path='/watchlist' element={ <Watchlist /> } />
+    <Route path='/resources' element={ <Resources /> } />
   </Route>));
 
 return (
@@ -24,8 +28,6 @@ return (
     <RouterProvider router={router} />
   </>);
 };
-
-export default App;
 
 
 
