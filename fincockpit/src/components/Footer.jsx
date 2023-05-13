@@ -14,8 +14,8 @@ return (
     <footer>
     
     <Divider>
-        <code>Build under progress. Coders currently at work.</code>
         <button onClick={goBack}>Back</button>
+        <code>Build under progress | Coders currently at work.</code>
         <button onClick={goForward}>Forward</button>
     </Divider>
 
