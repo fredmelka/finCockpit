@@ -10,7 +10,6 @@ return (
     <>
     <Header />
     <main>
-        <h1>I am the Root page!</h1>
         <Outlet />
     </main>
     <Footer />    
