@@ -44,10 +44,8 @@ return (
     </Divider>
 
     <Space direction='vertical' size='middle'>
-        {showStockList && securitiesList.map((security) =>  <div>{security}</div>)}
+        {showStockList && <Monitor securitiesList={securitiesList} />}
     </Space>
-
-    {securitiesList.length > 0 && <Monitor securitiesList={securitiesList} />}
 
     </>);
 };

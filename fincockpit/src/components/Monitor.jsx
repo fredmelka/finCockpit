@@ -9,32 +9,44 @@ const tokenFinnhub = 'chdons9r01qk9rb2m89gchdons9r01qk9rb2m8a0';
 
 
 export default function Monitor({securitiesList}) {
-    
-    console.log('liste de stocks a traiter', securitiesList);
-    
+
+console.log(`Tickers to be fetched : ${securitiesList.join(' ')}`);
+
 let [data, setData] = useState([]);
 
-// Function that builds Datasource required to render the <Table> antd Component
+// Function that builds [dataSource] required to render the <Table> antd Component
 async function getData() {
-
 try {
     let info = [];
     for (let i=0; i < securitiesList.length; i++) {
-            
+        
         let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${tokenFinnhub}`);
         let securityData = responseProfile2.data;
         if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData];};};
-    setData(info);}
-    
+        setData(info);}
+
 catch (error) {console.log(error)};
 };
     
 useEffect(() => {console.log('effect ran'); getData();}, [securitiesList]);
-    
+
+// Setting of the [Columns] required to render the <Table> antd Component
+const Columns = [
+    {title: 'Ticker', dataIndex: 'ticker', key: 'ticker'},
+    {title: 'Company Name', dataIndex: 'name', key: 'name'},
+    {title: 'Industry', dataIndex:'finnhubIndustry', key:'finnhubIndustry'},
+    {title: 'web', dataIndex:'weburl', key:'weburl'}
+];
+
 console.log(data);
-    
-return (<><div>{`Salut ! ${data.length}`}</div></>);
+
+return (
+    <>
+    <Skeleton active />
+    <Table dataSource={data} columns={Columns} />
+    </>);
 };
+
 
 // const urlFinnhubCompanyRecommendation = 'https://finnhub.io/api/v1/stock/recommendation?symbol=';
 
