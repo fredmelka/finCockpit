@@ -11,6 +11,8 @@ export default function Securities () {
 let [securitiesList, setSecuritiesList] = useState([]);
 let [showLookupBar, setLookupBar] = useState(false); 
 
+let updateMonitor = (array) => setSecuritiesList(array);
+
 return (
     <>
     <Space direction='vertical' size='middle'>
@@ -22,8 +24,11 @@ return (
             {showLookupBar ? 'Hide' : 'Open'} Symbol Lookup
         </Button>
     </Divider>
+    {showLookupBar && <SymbolLookup updateMonitor={updateMonitor} />}
 
-    {showLookupBar && <SymbolLookup lookupSymbol={() => {}} />}
+    <div>
+        {securitiesList.map((security) =>  <div>{(security)['1. symbol']}</div>)}
+    </div>
 
     </>);
 };
