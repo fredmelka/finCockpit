@@ -19,16 +19,20 @@ let updateLookup = (event) => setLookup(event.target.value);
 
 async function lookupSymbol (value) {
     try {
-        // Request here below is passed on to finnhub.io symbol lookup endpoint
+        // GET Request right below is sent to <finnhub.io> @ the 'Symbol_lookup' endpoint
         // let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${tokenFinnhub}`);
 
-        // Request here below is passed on to alphavantage.co ticker search endpoint
+        // GET Request right below is sent to <alphavantage.co> @ the 'Ticker_search' endpoint
         let response = await axios.get(`${urlEndpointAlphaVantage}&keywords=${value}&apikey=${apikeyAlphaVantage}`);
-        console.log(response.data);
-        // Data retrieved from the AlphaVantage request is under key 'bestMatches' (array of objects)
-        updateMonitor(response.data.bestMatches);
-        setLookup('');
-    } catch (error) {
+
+        // Data retrieved from the AlphaVantage request seat under the key 'bestMatches' (array of objects)
+        // Array of symbols is extracted here
+        let symbols = response.data.bestMatches.map(equity => equity['1. symbol']);
+
+        updateMonitor(symbols);
+        setLookup('');}
+    
+        catch (error) {
         console.warn(error);};
 };
 
@@ -40,7 +44,8 @@ return (
             allowClear
             type='text'
             value={lookup}
-            placeholder='Ticker, Name, ISIN, CUSIP, etc.'
+            placeholder='Ticker, Name, CUSIP, etc.'
+            enterButton
             onChange={updateLookup}
             onSearch={lookupSymbol} />
     </Space>

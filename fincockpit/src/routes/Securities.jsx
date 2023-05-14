@@ -2,14 +2,16 @@
 import React from "react";
 import { useState } from "react";
 import SymbolLookup from "../components/SymbolLookup";
+import IndexLookup from "../components/IndexLookup";
 
-import { Button, Divider, Space } from 'antd';
+import { Button, Col, Divider, Row, Space } from 'antd';
 
 
 export default function Securities () {
 
 let [securitiesList, setSecuritiesList] = useState([]);
-let [showLookupBar, setLookupBar] = useState(false); 
+let [showLookupBar, setLookupBar] = useState(false);
+let [showStockList, setShowStockList] = useState(false);
 
 let updateMonitor = (array) => setSecuritiesList(array);
 
@@ -24,11 +26,25 @@ return (
             {showLookupBar ? 'Hide' : 'Open'} Symbol Lookup
         </Button>
     </Divider>
-    {showLookupBar && <SymbolLookup updateMonitor={updateMonitor} />}
 
-    <div>
-        {securitiesList.map((security) =>  <div>{(security)['1. symbol']}</div>)}
-    </div>
+    <Row>
+        <Col span={12}>
+        {showLookupBar && <IndexLookup updateMonitor={updateMonitor} />}
+        </Col>
+        <Col span={12}>
+        {showLookupBar && <SymbolLookup updateMonitor={updateMonitor} />}
+        </Col>
+    </Row>
+
+    <Divider orientation='left'>
+        <Button onClick={() => setShowStockList(!showStockList)}>
+        {showStockList ? 'Hide' : 'Expand'} Monitor: {`${securitiesList.length} securit${securitiesList.length > 1 ? 'ies' : 'y'})`}
+        </Button>
+    </Divider>
+
+    <Space direction='vertical' size='middle'>
+        {showStockList && securitiesList.map((security) =>  <div>{security} key={security} </div>)}
+    </Space>
 
     </>);
 };
