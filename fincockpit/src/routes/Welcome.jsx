@@ -5,7 +5,7 @@ export default function Welcome () {
 
 return (
     <>
-    <h1>FinCockpit</h1>
-    <h3>Show me the money baby!</h3>
+    <h1>Welcome to FinCockpit</h1>
+    <h2>Show me the money baby!</h2>
     </>);
 };

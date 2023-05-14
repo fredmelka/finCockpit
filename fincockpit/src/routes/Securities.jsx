@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useState } from "react";
+import Monitor from "../components/Monitor";
 import SymbolLookup from "../components/SymbolLookup";
 import IndexLookup from "../components/IndexLookup";
 
@@ -38,13 +39,15 @@ return (
 
     <Divider orientation='left'>
         <Button onClick={() => setShowStockList(!showStockList)}>
-        {showStockList ? 'Hide' : 'Expand'} Monitor: {`${securitiesList.length} securit${securitiesList.length > 1 ? 'ies' : 'y'})`}
+        {showStockList ? 'Hide' : 'Expand'} Monitor :{` ${securitiesList.length} securit${securitiesList.length > 1 ? 'ies' : 'y'}`}
         </Button>
     </Divider>
 
     <Space direction='vertical' size='middle'>
-        {showStockList && securitiesList.map((security) =>  <div>{security} key={security} </div>)}
+        {showStockList && securitiesList.map((security) =>  <div>{security}</div>)}
     </Space>
+
+    {securitiesList.length > 0 && <Monitor securitiesList={securitiesList} />}
 
     </>);
 };

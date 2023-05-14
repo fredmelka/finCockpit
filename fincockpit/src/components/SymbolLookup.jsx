@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from 'axios';
-import { Button, Input, Space } from 'antd';
+import { Input, Space } from 'antd';
 
 const urlEndpointFinnhub = 'https://finnhub.io/api/v1/search?q=';
 const tokenFinnhub = 'chdons9r01qk9rb2m89gchdons9r01qk9rb2m8a0';
@@ -32,8 +32,7 @@ async function lookupSymbol (value) {
         updateMonitor(symbols);
         setLookup('');}
     
-        catch (error) {
-        console.warn(error);};
+    catch (error) {console.warn(error);};
 };
 
 return (
