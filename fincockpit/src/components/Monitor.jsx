@@ -34,8 +34,9 @@ useEffect(() => {console.log('effect ran'); getData();}, [securitiesList]);
 const Columns = [
     {title: 'Ticker', dataIndex: 'ticker', key: 'ticker'},
     {title: 'Company Name', dataIndex: 'name', key: 'name'},
-    {title: 'Industry', dataIndex:'finnhubIndustry', key:'finnhubIndustry'},
-    {title: 'web', dataIndex:'weburl', key:'weburl'}
+    {title: 'Industry', dataIndex: 'finnhubIndustry', key: 'finnhubIndustry'},
+    {title: 'web', dataIndex: 'weburl', key: 'weburl'},
+    {title: 'WatchList', dataIndex: 'action', render: (_, record) => ( <Tag>{record.ticker}</Tag> )}
 ];
 
 console.log(data);
