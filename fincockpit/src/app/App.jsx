@@ -19,7 +19,9 @@ export default function App() {
 //declare here variable 'router' under which all routes and paths are set for web navigation
 const router = createBrowserRouter( createRoutesFromElements(
   <Route path='/' element={ <Root /> } errorElement={ <ErrorPage /> }>
+
     <Route index='true' element={ <Welcome /> } />
+    
     <Route path='/about' element={ <About /> } />
     <Route path='/securities' element={ <Securities /> } />
     <Route path='/watchlist' element={ <Watchlist /> } />
