@@ -16,16 +16,16 @@ let [data, setData] = useState([]);
 
 // Function that builds [dataSource] required to render the <Table> antd Component
 async function getData() {
-try {
     let info = [];
     for (let i=0; i < securitiesList.length; i++) {
-        
-        let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${tokenFinnhub}`);
-        let securityData = responseProfile2.data;
-        if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData];};};
-        setData(info);}
-
-catch (error) {console.log(error)};
+        try {
+            let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${tokenFinnhub}`);
+            let securityData = responseProfile2.data;
+            if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData]};
+        }
+        catch (error) {console.log(error)};
+    };
+    setData(info);
 };
     
 useEffect(() => {console.log('effect ran'); getData();}, [securitiesList]);
@@ -42,8 +42,9 @@ console.log(data);
 
 return (
     <>
-    <Skeleton active />
-    <Table dataSource={data} columns={Columns} />
+    <Skeleton active loading={data.length === 0} title={false} paragraph={{rows: 2, width: 800}}>
+        <Table dataSource={data} columns={Columns} />
+    </Skeleton>
     </>);
 };
 
