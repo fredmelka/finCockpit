@@ -2,6 +2,7 @@
 import React from 'react';
 import About from '../routes/About.jsx';
 import ErrorPage from '../routes/Error.jsx';
+import Oopsies from '../routes/Oopsies.jsx';
 import Resources from '../routes/Resources.jsx';
 import Root from '../routes/Root.jsx';
 import Securities from '../routes/Securities.jsx';
@@ -23,6 +24,8 @@ const router = createBrowserRouter( createRoutesFromElements(
     <Route path='/securities' element={ <Securities /> } />
     <Route path='/watchlist' element={ <Watchlist /> } />
     <Route path='/resources' element={ <Resources /> } />
+
+    <Route path='*' element={ <Oopsies /> } />
   </Route>));
 
 return (
