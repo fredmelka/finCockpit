@@ -26,7 +26,7 @@ async function lookupSymbol (value) {
         let response = await axios.get(`${urlEndpointAlphaVantage}&keywords=${value}&apikey=${apikeyAlphaVantage}`);
 
         // Data retrieved from the AlphaVantage request seat under the key 'bestMatches' (array of objects)
-        // Array of symbols is extracted here
+        // Array of symbols is collected here by grabbing the value of the key '1. symbol' of each object of the array
         let symbols = response.data.bestMatches.map(equity => equity['1. symbol']);
 
         updateMonitor(symbols);

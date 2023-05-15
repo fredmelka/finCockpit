@@ -21,7 +21,7 @@ return (
         <NavLink to='/profile'>Profile</NavLink>
         {/* <button onClick={()=>{}}>Log Out</button> */}
         
-        <NavLink to='/sign-in'>Log In</NavLink>
+        <NavLink to='/login'>Log In</NavLink>
         <NavLink to='/sign-up'>Sign Up</NavLink>
     </Col>
 
