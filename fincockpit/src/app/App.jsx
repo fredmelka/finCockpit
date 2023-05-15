@@ -26,6 +26,7 @@ const router = createBrowserRouter( createRoutesFromElements(
     <Route path='/about' element={ <About /> } />
     <Route path='/securities' element={ <Securities /> } />
     <Route path='/watchlist' element={ <Watchlist /> } />
+    <Route path='/watchlist/:id' element={ <Watchlist /> } />
     <Route path='/resources' element={ <Resources /> } />
 
     <Route path='/login' element={ <Login /> } />
