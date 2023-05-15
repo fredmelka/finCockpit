@@ -29,7 +29,7 @@ async function getData() {
     setData(info);
 };
     
-useEffect(() => {console.log('effect ran'); getData();}, [securitiesList]);
+useEffect(() => {getData()}, [securitiesList]);
 
 // Setting of the [Columns] required to render the <Table> antd Component
 const Columns = [
