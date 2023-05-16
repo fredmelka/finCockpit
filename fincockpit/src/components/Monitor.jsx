@@ -1,9 +1,9 @@
 
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from 'axios';
-import { Skeleton, Table, Tag } from 'antd';
-import { addToWatchlist } from '../app/Crud.js'
+import React                                from "react";
+import { useState, useEffect }              from "react";
+import axios                                from 'axios';
+import { Skeleton, Table, Tag }             from 'antd';
+import { addToWatchlist }                   from '../app/Crud.js'
 
 const urlFinnhubCompanyProfile2 = 'https://finnhub.io/api/v1/stock/profile2?symbol=';
 const tokenFinnhub = 'chdons9r01qk9rb2m89gchdons9r01qk9rb2m8a0';
@@ -37,7 +37,7 @@ const Columns = [
     {title: 'Company Name', dataIndex: 'name', key: 'name'},
     {title: 'Industry', dataIndex: 'finnhubIndustry', key: 'finnhubIndustry'},
     {title: 'web', dataIndex: 'weburl', key: 'weburl'},
-    {title: 'WatchList', dataIndex: 'action', render: (_, record) => ( <Tag onClick={() => {addToWatchlist('64626285ed70adc2fc0fabb9', record.ticker, record.name)}}>{record.ticker}</Tag> )}
+    {title: 'WatchList', dataIndex: 'action', key: 'watchlist', render: (_, record) => ( <Tag onClick={() => {addToWatchlist('64626285ed70adc2fc0fabb9', record.ticker, record.name)}}>{record.ticker}</Tag> )}
 ];
 
 console.log(data);
