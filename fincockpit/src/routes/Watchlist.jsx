@@ -1,16 +1,16 @@
 
-import React                                from "react";
-import { useState, useEffect }              from "react";
-import { useParams }                        from "react-router-dom";
-import SecurityListCard                     from "../components/SecurityListCard";
-import SecurityDES                          from "../components/SecurityDESCard";
-import { Card, Col, Row, Space  }           from "antd";
-import { getWatchlist }                     from '../app/Crud'
-
-import axios                                from "axios";
+import React                                    from "react";
+import { useState, useEffect }                  from "react";
+import { useParams }                            from "react-router-dom";
+import SecurityListCard                         from "../components/SecurityListCard";
+import SecurityDES                              from "../components/SecurityDESCard";
+import { Card, Col, Row, Space  }               from "antd";
+import { getWatchlist, removeFromWatchlist }    from '../app/Crud'
+import axios                                    from "axios";
 
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=OVERVIEW';
 const apikeyAlphaVantage = 'H7OMN7DX1WTKYADM';
+
 
 export default function Watchlist () {
 
@@ -36,20 +36,29 @@ async function getSecurityOverview(value) {
     catch (error) {console.log(error)};
     };
 
-useEffect(() => { console.log('effect ran'); browseListFromUser();}, [id])
+async function removeSecurity(ticker) {
+    try {
+        let newList = await removeFromWatchlist(id, watchlist, ticker);
+        setWatchlist(newList);
+        setCompanyOverview({})
+    }
+    catch (error) {console.log(error)};
+};
 
+useEffect(() => { console.log('effect ran'); browseListFromUser();}, [id])
 console.log(watchlist);
 
 return (
     <>
     <h2>I am the Watchlist page!</h2>
+    {(!watchlist) && <p>You must log in to access your data dude!</p>}
     <Space direction='vertical' />
     <Row>
         <Col span={6} offset={1}>
         {id && <SecurityListCard style={{textAlign: 'left'}} watchlist={watchlist} getSecurityOverview={getSecurityOverview} />}
         </Col>
         <Col span={15} offset={1}>
-            <SecurityDES companyOverview={companyOverview} />
+        {(watchlist) && <SecurityDES companyOverview={companyOverview} removeSecurity={removeSecurity}/>}
         </Col>
     </Row>  
     </>);

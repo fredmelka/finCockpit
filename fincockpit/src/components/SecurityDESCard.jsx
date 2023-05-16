@@ -1,13 +1,11 @@
 
 import React                                from "react";
-import { useState, useEffect }              from "react";
-import axios                                from "axios";
-import { Card, Space, Popover, Tag }                 from 'antd';
+import { Card, Space, Popover, Tag }        from 'antd';
 
 
-export default function SecurityDES({companyOverview}) {
+export default function SecurityDES({companyOverview, removeSecurity}) {
 
-let {Name, Description, Country, Exchange, Sector, Industry, MarketCapitalization, Currency, PERatio, DividendYield, EPS } = companyOverview;
+let {Name, Symbol, Description, Country, Exchange, Sector, MarketCapitalization, Currency, PERatio, DividendYield, EPS } = companyOverview;
 
 return (
     <>
@@ -16,14 +14,13 @@ return (
         bordered
         size='small'
         title={<Popover
-                    style={{width: '300px'}}
                     content={Description}
                     placement='rightTop'
                     title='Description'
                     trigger='click'>
                 {Name}</Popover>}
 
-        extra={<Tag>Remove</Tag>}
+        extra={<Tag onClick={() => removeSecurity(Symbol)}>Remove</Tag>}
         headStyle={{textAlign: 'left'}}
         bodyStyle={{textAlign: 'left'}}>
 
