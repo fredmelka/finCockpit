@@ -55,7 +55,7 @@ return (
         {id && <SecurityListCard style={{textAlign: 'left'}} watchlist={watchlist} getSecurityOverview={getSecurityOverview} />}
         </Col>
         <Col span={15} offset={1}>
-        {(watchlist) && <SecurityDES companyOverview={companyOverview} removeSecurity={removeSecurity}/>}
+        {watchlist && <SecurityDES companyOverview={companyOverview} removeSecurity={removeSecurity}/>}
         </Col>
     </Row>  
     </>);

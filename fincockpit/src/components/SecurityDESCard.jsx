@@ -1,18 +1,18 @@
 
-import React                                from "react";
-import { Card, Space, Popover, Tag }        from 'antd';
+import React from "react";
+import { Button, Card, Descriptions, Space, Popover, Tag } from 'antd';
 
 
 export default function SecurityDES({companyOverview, removeSecurity}) {
 
-let {Name, Symbol, Description, Country, Exchange, Sector, MarketCapitalization, Currency, PERatio, DividendYield, EPS } = companyOverview;
+let { AnalystTargetPrice, Country, Currency, Description, DividendYield, EPS, Exchange, Industry,
+    Name, Symbol, Sector, MarketCapitalization,  PERatio, ProfitMargin } = companyOverview;
 
 return (
     <>
     <Space direction='vertical' />
     <Card 
         bordered
-        size='small'
         title={<Popover
                     content={Description}
                     placement='rightTop'
@@ -20,17 +20,27 @@ return (
                     trigger='click'>
                 {Name}</Popover>}
 
-        extra={<Tag onClick={() => removeSecurity(Symbol)}>Remove</Tag>}
+        extra={<Button type='primary' danger onClick={() => removeSecurity(Symbol)}>Remove</Button>}
         headStyle={{textAlign: 'left'}}
         bodyStyle={{textAlign: 'left'}}>
 
-        <p><strong>Country : </strong>{Country}</p>
-        <p><strong>Exchange : </strong>{Exchange}</p>
-        <p><strong>Sector : </strong>{Sector}</p>
-        <p><strong>Market Cap. : </strong>{Currency != '' ? `${Math.floor(MarketCapitalization / 1000000) / 1000} Mds ${Currency}` : ''}</p>
-        <p><strong>PE Ratio : </strong>{PERatio}</p>
-        <p><strong>Dividend Yield : </strong>{DividendYield != '' ? `${Math.floor(DividendYield * 10000) / 100} %` : ''}</p>
-        <p><strong>EPS : </strong>{EPS}</p>
+        <Descriptions column={3}>
+            <Descriptions.Item label='Country'>{Country}</Descriptions.Item>
+            <Descriptions.Item label='Exchange'>{Exchange}</Descriptions.Item>
+            {/* <Descriptions.Item label='Currency'>{Currency}</Descriptions.Item> */}
+            <Descriptions.Item label='Market Cap.'>{Currency ? `${Math.floor(MarketCapitalization / 1e9)} Mds ${Currency}` : ''}</Descriptions.Item>
+            <Descriptions.Item label='Sector'><Tag>{Sector}</Tag></Descriptions.Item>
+            <Descriptions.Item label='Industry' span={2}><Tag>{Industry}</Tag></Descriptions.Item>
+            <Descriptions.Item label='PE Ratio'>{PERatio}</Descriptions.Item>
+            <Descriptions.Item label='Dividend Yield'>{DividendYield ? `${Math.floor(DividendYield * 10000) / 100}%` : ''}</Descriptions.Item>
+            <Descriptions.Item label='EPS'>{EPS}</Descriptions.Item>
+            <Descriptions.Item label='Profit Margin'>{ProfitMargin ? `${Math.floor(ProfitMargin * 10000) / 100}%` : ''}</Descriptions.Item>
+            <Descriptions.Item label='Analyst Target' span={2}>{AnalystTargetPrice}</Descriptions.Item>
+            <Descriptions.Item label='52week High' span={1}>{companyOverview['52WeekHigh']}</Descriptions.Item>
+            <Descriptions.Item label='52week Low' span={2}>{companyOverview['52WeekLow']}</Descriptions.Item>
+            <Descriptions.Item label='50d Mov. Avg.' span={1}>{companyOverview['50DayMovingAverage']}</Descriptions.Item>
+            <Descriptions.Item label='200d Mov. Avg.' span={2}>{companyOverview['200DayMovingAverage']}</Descriptions.Item>
+        </Descriptions>
     </Card>
     </>);
 };

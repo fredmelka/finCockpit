@@ -18,10 +18,7 @@ return (
     </Col>
 
     <Col span={10} offset={2}>
-    {/* to be inserted within a ternary operator based on user */}
-        <NavLink to='/profile'>Profile</NavLink>
         {/* <button onClick={()=>{}}>Log Out</button> */}
-        
         <NavLink to='/login'>Log In</NavLink>
         <NavLink to='/sign-up'>Sign Up</NavLink>
     </Col>
