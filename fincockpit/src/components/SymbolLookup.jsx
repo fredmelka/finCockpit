@@ -1,12 +1,14 @@
 
-import React from "react";
-import { useState } from "react";
-import axios from 'axios';
-import { Input, Space } from 'antd';
+import React                        from "react";
+import { useState }                 from "react";
+import axios                        from 'axios';
+import { Input, Space }             from 'antd';
+import { _AVapikey_1 }              from '../keys.js';
 
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH';
-const apikeyAlphaVantage = 'H7OMN7DX1WTKYADM';
-
+// GET Request right below is sent to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
+// Data retrieved from the AlphaVantage request seat under a key named 'bestMatches' (array of objects)
+// Array of symbols is collected here by grabbing the value of the key '1. symbol' of each object of the array
 
 export default function SymbolLookup ({updateMonitor}) {
 
@@ -17,10 +19,7 @@ let updateLookup = (event) => setLookup(event.target.value);
 
 async function lookupSymbol (value) {
 try {
-    // GET Request right below is sent to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
-    // Data retrieved from the AlphaVantage request seat under a key named 'bestMatches' (array of objects)
-    // Array of symbols is collected here by grabbing the value of the key '1. symbol' of each object of the array
-    let response = await axios.get(`${urlEndpointAlphaVantage}&keywords=${value}&apikey=${apikeyAlphaVantage}`);
+    let response = await axios.get(`${urlEndpointAlphaVantage}&keywords=${value}&apikey=${_AVapikey_1}`);
     let symbols = response.data.bestMatches.map(equity => equity['1. symbol']);
     updateMonitor(symbols);
     setLookup('');}

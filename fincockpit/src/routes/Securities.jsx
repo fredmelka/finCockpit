@@ -1,18 +1,17 @@
 
-import React from "react";
-import { useState } from "react";
-import Monitor from "../components/Monitor";
-import SymbolLookup from "../components/SymbolLookup";
-import IndexLookup from "../components/IndexLookup";
-
+import React                                from "react";
+import { useState }                         from "react";
+import Monitor                              from "../components/Monitor";
+import SymbolLookup                         from "../components/SymbolLookup";
+import IndexLookup                          from "../components/IndexLookup";
 import { Button, Col, Divider, Row, Space } from 'antd';
 
 
 export default function Securities () {
 
-let [securitiesList, setSecuritiesList] = useState([]);
-let [showLookupBar, setLookupBar] = useState(false);
-let [showStockList, setShowStockList] = useState(false);
+let [securitiesList, setSecuritiesList]     = useState([]);
+let [showLookupBar, setLookupBar]           = useState(false);
+let [showStockList, setShowStockList]       = useState(false);
 
 let updateMonitor = (array) => setSecuritiesList(array);
 
@@ -46,6 +45,5 @@ return (
     <Space direction='vertical' size='middle'>
         {showStockList && <Monitor securitiesList={securitiesList} />}
     </Space>
-
     </>);
 };

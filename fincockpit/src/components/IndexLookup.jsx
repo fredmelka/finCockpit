@@ -1,11 +1,11 @@
 
-import React from "react";
-import { useState } from "react";
-import axios from 'axios';
-import { Input, Space } from 'antd';
+import React                        from "react";
+import { useState }                 from "react";
+import axios                        from 'axios';
+import { Input, Space }             from 'antd';
+import { _FinnhubToken_1 }          from '../keys.js';
 
 const urlEndpointFinnhub = 'https://finnhub.io/api/v1/index/constituents?symbol=';
-const tokenFinnhub = 'chdons9r01qk9rb2m89gchdons9r01qk9rb2m8a0';
 
 
 export default function IndexLookup ({updateMonitor}) {
@@ -16,15 +16,14 @@ let [lookup, setLookup] = useState('');
 let updateLookup = (event) => setLookup(event.target.value);
 
 async function getIndexMembers (value) {
-    try {
-        // GET Request right below is sent to <finnhub.io> @ the 'Symbol_lookup' endpoint
-        let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${tokenFinnhub}`);
+try {
+    // GET Request right below is sent to <finnhub.io> @ the 'Symbol_lookup' endpoint
+    let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${_FinnhubToken_1}`);
 
-        // Data retrieved from the finnhub request is under key 'bestMatches' (array of objects)
-        updateMonitor(response.data.constituents);
-        setLookup('');}
-    
-    catch (error) {console.log(error);};
+    // Data retrieved from the finnhub request is under key 'bestMatches' (array of objects)
+    updateMonitor(response.data.constituents);
+    setLookup('');}
+catch (error) {console.log(error);};
 };
 
 return (

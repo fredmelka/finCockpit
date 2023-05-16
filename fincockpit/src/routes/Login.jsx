@@ -1,8 +1,9 @@
 
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Input, Space } from "antd";
-import { getUser } from '../app/Crud'
+import React, { useState }                  from "react";
+import { useNavigate }                      from 'react-router-dom';
+import { Input, Space }                     from "antd";
+import { getUser }                          from '../app/Crud'
+
 
 export default function Login () {
 
@@ -13,10 +14,11 @@ let navigate = useNavigate();
 let updateName = (event) => {setUsername(event.target.value)};
 
 async function logUser (username) {
-
+try {
     let userObject = await getUser(username);
     console.log(await userObject._id);
-    navigate(`/watchlist/${userObject._id}`);
+    navigate(`/watchlist/${userObject._id}`);}
+catch (error) {console.log(error)};
 };
 
 return (
@@ -31,9 +33,7 @@ return (
             placeholder='Username only please!'
             enterButton
             onChange={updateName}
-            onSearch={() => {logUser(username)}}
-             />
+            onSearch={() => {logUser(username)}}/>
     </Space>
-
     </>);
 };

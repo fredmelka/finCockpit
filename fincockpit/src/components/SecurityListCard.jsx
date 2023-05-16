@@ -1,6 +1,6 @@
 
-import React                                from "react";
-import { List, Skeleton, Tag }              from 'antd';
+import React                from "react";
+import { List, Tag }        from 'antd';
 
 
 export default function ({watchlist, getSecurityOverview}) {

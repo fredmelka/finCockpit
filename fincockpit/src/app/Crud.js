@@ -55,6 +55,8 @@ try {
 catch (error) {console.log(error)};
 };
 
+
+// function that PATCH a new Array watchlist from the user Object in order to remove one favorite = {ticker, companyname} 
 async function removeFromWatchlist (userId, watchlist, ticker) {
 try {
     let newWatchlist = watchlist.filter((security) => security.ticker !== ticker);
@@ -64,5 +66,6 @@ try {
 }
 catch (error) {console.log(error)};
 };
+
 
 export { getUser, getWatchlist, createUser, addToWatchlist, removeFromWatchlist };

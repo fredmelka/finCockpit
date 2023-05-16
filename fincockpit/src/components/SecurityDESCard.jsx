@@ -9,7 +9,7 @@ let {Name, Symbol, Description, Country, Exchange, Sector, MarketCapitalization,
 
 return (
     <>
-    <Space direction='vertical'  />
+    <Space direction='vertical' />
     <Card 
         bordered
         size='small'
@@ -32,6 +32,5 @@ return (
         <p><strong>Dividend Yield : </strong>{DividendYield != '' ? `${Math.floor(DividendYield * 10000) / 100} %` : ''}</p>
         <p><strong>EPS : </strong>{EPS}</p>
     </Card>
-    </>
-);
+    </>);
 };

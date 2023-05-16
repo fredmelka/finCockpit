@@ -1,12 +1,12 @@
 
-import React                                from "react";
-import { useState, useEffect }              from "react";
-import axios                                from 'axios';
-import { Skeleton, Table, Tag }             from 'antd';
-import { addToWatchlist }                   from '../app/Crud.js'
+import React                                    from "react";
+import { useState, useEffect }                  from "react";
+import axios                                    from 'axios';
+import { Skeleton, Table, Tag }                 from 'antd';
+import { addToWatchlist }                       from '../app/Crud.js';
+import { _FinnhubToken_1, _FinnhubToken_2 }     from '../keys.js';
 
 const urlFinnhubCompanyProfile2 = 'https://finnhub.io/api/v1/stock/profile2?symbol=';
-const tokenFinnhub = 'chdons9r01qk9rb2m89gchdons9r01qk9rb2m8a0';
 
 
 export default function Monitor({securitiesList}) {
@@ -15,12 +15,12 @@ console.log(`Tickers to be fetched : ${securitiesList.join(' ')}`);
 
 let [data, setData] = useState([]);
 
-// Function that builds [dataSource] required to render the <Table> antd Component
+// Function that builds [dataSource] required to render the <Table> Component
 async function getData() {
     let info = [];
     for (let i=0; i < securitiesList.length; i++) {
         try {
-            let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${tokenFinnhub}`);
+            let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${_FinnhubToken_1}`);
             let securityData = responseProfile2.data;
             if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData]};
         }
@@ -39,8 +39,6 @@ const Columns = [
     {title: 'web', dataIndex: 'weburl', key: 'weburl'},
     {title: 'WatchList', dataIndex: 'action', key: 'watchlist', render: (_, record) => ( <Tag onClick={() => {addToWatchlist('64626285ed70adc2fc0fabb9', record.ticker, record.name)}}>{record.ticker}</Tag> )}
 ];
-
-console.log(data);
 
 return (
     <>

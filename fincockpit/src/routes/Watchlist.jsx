@@ -1,15 +1,15 @@
 
-import React                                    from "react";
-import { useState, useEffect }                  from "react";
-import { useParams }                            from "react-router-dom";
-import SecurityListCard                         from "../components/SecurityListCard";
-import SecurityDES                              from "../components/SecurityDESCard";
-import { Card, Col, Row, Space  }               from "antd";
-import { getWatchlist, removeFromWatchlist }    from '../app/Crud'
-import axios                                    from "axios";
+import React                                    from 'react';
+import { useState, useEffect }                  from 'react';
+import { useParams }                            from 'react-router-dom';
+import SecurityListCard                         from '../components/SecurityListCard';
+import SecurityDES                              from '../components/SecurityDESCard';
+import { Col, Row, Space  }                     from 'antd';
+import { getWatchlist, removeFromWatchlist }    from '../app/Crud.js';
+import { _AVapikey_1, _AVapikey_2 }             from '../keys.js';
+import axios                                    from 'axios';
 
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=OVERVIEW';
-const apikeyAlphaVantage = 'H7OMN7DX1WTKYADM';
 
 
 export default function Watchlist () {
@@ -26,23 +26,20 @@ async function browseListFromUser() {
 };
 
 async function getSecurityOverview(value) {
-    try {
-        console.log(value);
-        // GET Request right below is sent to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
-        let response = await axios.get(`${urlEndpointAlphaVantage}&symbol=${value}&apikey=${apikeyAlphaVantage}`);
-        let overviewData = response.data;
-        setCompanyOverview(overviewData);
-    }
-    catch (error) {console.log(error)};
-    };
+try {
+    // GET Request right below is sent to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
+    let response = await axios.get(`${urlEndpointAlphaVantage}&symbol=${value}&apikey=${_AVapikey_1}`);
+    let overviewData = response.data;
+    setCompanyOverview(overviewData);}
+catch (error) {console.log(error)};
+};
 
 async function removeSecurity(ticker) {
-    try {
-        let newList = await removeFromWatchlist(id, watchlist, ticker);
-        setWatchlist(newList);
-        setCompanyOverview({})
-    }
-    catch (error) {console.log(error)};
+try {
+    let newList = await removeFromWatchlist(id, watchlist, ticker);
+    setWatchlist(newList);
+    setCompanyOverview({})}
+catch (error) {console.log(error)};
 };
 
 useEffect(() => { console.log('effect ran'); browseListFromUser();}, [id])
