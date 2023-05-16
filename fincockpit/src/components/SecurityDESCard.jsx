@@ -2,29 +2,38 @@
 import React                                from "react";
 import { useState, useEffect }              from "react";
 import axios                                from "axios";
-import { Card, Space, Tag }                 from 'antd';
+import { Card, Space, Popover, Tag }                 from 'antd';
 
 
 export default function SecurityDES({companyOverview}) {
 
+let {Name, Description, Country, Exchange, Sector, Industry, MarketCapitalization, Currency, PERatio, DividendYield, EPS } = companyOverview;
+
 return (
     <>
-    <Space direction='vertical' size={10} />
+    <Space direction='vertical'  />
     <Card 
         bordered
-        title={companyOverview.Name}
+        size='small'
+        title={<Popover
+                    style={{width: '300px'}}
+                    content={Description}
+                    placement='rightTop'
+                    title='Description'
+                    trigger='click'>
+                {Name}</Popover>}
+
         extra={<Tag>Remove</Tag>}
         headStyle={{textAlign: 'left'}}
         bodyStyle={{textAlign: 'left'}}>
 
-        <p>{`Country : ${companyOverview.Country}`}</p>
-        <p>{`Exhange : ${companyOverview.Exchange}`}</p>
-        <p>{`Sector : ${companyOverview.Sector}`}</p>
-        <p>{`Industry : ${companyOverview.Industry}`}</p>
-        <p>{`MarketCapitalization : ${Math.floor(companyOverview.MarketCapitalization / 1000000)} Mds`}</p>
-        <p>{`PE Ratio : ${companyOverview.PERatio}`}</p>
-        <p>{`Dividend Yield : ${companyOverview.DividendYield}`}</p>
-        <p>{`EPS : ${companyOverview.EPS}`}</p>
+        <p><strong>Country : </strong>{Country}</p>
+        <p><strong>Exchange : </strong>{Exchange}</p>
+        <p><strong>Sector : </strong>{Sector}</p>
+        <p><strong>Market Cap. : </strong>{Currency != '' ? `${Math.floor(MarketCapitalization / 1000000) / 1000} Mds ${Currency}` : ''}</p>
+        <p><strong>PE Ratio : </strong>{PERatio}</p>
+        <p><strong>Dividend Yield : </strong>{DividendYield != '' ? `${Math.floor(DividendYield * 10000) / 100} %` : ''}</p>
+        <p><strong>EPS : </strong>{EPS}</p>
     </Card>
     </>
 );
