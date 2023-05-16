@@ -24,7 +24,7 @@ async function getIndexMembers (value) {
         updateMonitor(response.data.constituents);
         setLookup('');}
     
-    catch (error) {console.warn(error);};
+    catch (error) {console.log(error);};
 };
 
 return (

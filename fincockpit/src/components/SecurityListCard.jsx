@@ -3,7 +3,7 @@ import React                                from "react";
 import { List, Skeleton, Tag }              from 'antd';
 
 
-export default function ({watchlist}) {
+export default function ({watchlist, getSecurityOverview}) {
 
 return (
     <>
@@ -13,7 +13,7 @@ return (
             header={<div><strong>My favorites</strong></div>}
             dataSource = {watchlist}
             renderItem = {(item, index) => (
-                <List.Item> {<Tag color='geekblue-inverse'>{item.ticker}</Tag>}
+                <List.Item> {<Tag key={index} onClick={() => getSecurityOverview(item.ticker)} color='geekblue-inverse'>{item.ticker}</Tag>}
                             {item.companyname}</List.Item>)}
             style = {{textAlign: 'left'}}
     />
