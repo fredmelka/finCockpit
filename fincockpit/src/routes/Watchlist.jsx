@@ -3,7 +3,7 @@ import React                                from "react";
 import { useState, useEffect }              from "react";
 import { useParams }                        from "react-router-dom";
 import SecurityListCard                     from "../components/SecurityListCard";
-import { Col, Space, Row  }        from "antd";
+import { Card, Col, Row, Space  }           from "antd";
 import { getWatchlist }                     from '../app/Crud'
 
 
@@ -14,10 +14,8 @@ let { id } = useParams();
 
 async function browseListFromUser() {
 let list = [];
-try {
-    list = await getWatchlist(id);}
+try {list = await getWatchlist(id);}
 catch (error) {console.log(error)};
-
 setWatchlist(list);
 };
 
@@ -32,6 +30,9 @@ return (
     <Row>
         <Col span={6} offset={1}>
         {id && <SecurityListCard style={{textAlign: 'left'}} watchlist={watchlist} />}
+        </Col>
+        <Col span={15} offset={1}>
+            <Card bordered></Card>
         </Col>
     </Row>  
     </>);
