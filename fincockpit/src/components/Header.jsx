@@ -1,7 +1,7 @@
 
 import React                        from "react";
 import { NavLink }                  from 'react-router-dom';
-import { Row, Col }                 from 'antd';
+import { Row, Col, Tag }                 from 'antd';
 
 
 export default function Header () {
@@ -9,17 +9,17 @@ export default function Header () {
 return (
     <header>
     <Row>
-    <Col span={10} offset={1}>
+    <Col span={22} offset={1}>
         <NavLink to='/about'>About</NavLink>
         <NavLink to='/securities'>Securities</NavLink>
         <NavLink to='/watchlist'>Watch List</NavLink>
         <NavLink to='/resources'>Resources</NavLink>
+        <NavLink to='/login'><Tag color='red'>Log In</Tag></NavLink>
+        <NavLink to='/signup'><Tag color='geekblue-inverse'> Sign Up</Tag></NavLink>
     </Col>
-    <Col span={3} offset={8}>
+    {/* <Col span={4} offset={1}>
         {/* <button onClick={()=>{}}>Log Out</button> */}
-        <NavLink to='/login'>Log In</NavLink>
-        <NavLink to='/signup'>Sign Up</NavLink>
-    </Col>
+    {/*</Col> */}
     </Row>
     </header>);
 };

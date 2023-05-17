@@ -1,6 +1,6 @@
 
 import React, { useState }                  from "react";
-import { useNavigate }                      from 'react-router-dom';
+import { useNavigate, Link }                from 'react-router-dom';
 import { Input, Space, Typography }         from 'antd';
 import { createUser }                       from '../app/Crud.js'
 
@@ -14,6 +14,7 @@ let [userId, setUserId] = useState(null);
 let navigate = useNavigate();
 
 let updateName = (event) => {setUsername(event.target.value)};
+let goToLoginPage = (event) => {event.preventDefault(); navigate('/login');};
 
 async function signUp (x) {
 try {
@@ -27,7 +28,7 @@ catch (error) {console.log(error)};
 return (
     <>
     <h2>I am the Signup Page!</h2>
-    <h3>Please enter your username to sign Up</h3>
+    <h3>Please enter your username to sign up:</h3>
     <Space direction='vertical'>
         <Search
             addonBefore='Client'
@@ -38,7 +39,10 @@ return (
             enterButton
             onChange={updateName}
             onSearch={() => {signUp(username)}}/>
-    {userId && <Text type='success'>You have successfully created your account! We are so happy that you join!</Text>}
+    {userId &&  <>
+                <Text type='success'>You have successfully created your account! We are so happy that you join!</Text>
+                <Text type='success'> Click here to login <Tag onClick={goToLoginPage}>here</Tag>.</Text>
+                </>}
     </Space>
     </>);
 };

@@ -27,7 +27,8 @@ a:hover {
 
 header {
   border-bottom: 1px solid lightgray;
-  height: 3vh;
+  padding-bottom: 2vh;
+  height: 2vh;
 }
 
 main {
