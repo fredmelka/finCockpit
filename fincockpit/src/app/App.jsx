@@ -17,9 +17,10 @@ import Welcome                          from '../routes/Welcome.jsx';
 
 import './App.css';
 
+
 export default function App() {
 
-//declare here variable 'router' under which all routes and paths are set for web navigation
+// Declare here variable 'router' under which all routes and paths are set for web navigation
 const router = createBrowserRouter( createRoutesFromElements(
   <Route path='/' element={ <Root /> } errorElement={ <ErrorPage /> }>
 
