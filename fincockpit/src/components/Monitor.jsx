@@ -62,7 +62,7 @@ const Columns = [
 
 return (
     <>
-    <Skeleton active loading={data.length === 0} title={false} paragraph={{rows: 2, width: 800}}>
+    <Skeleton active loading={data.length === 0} title={false} paragraph={{rows: 3, width: 800}}>
         <Table dataSource={data} columns={Columns} />
     </Skeleton>
     </>);

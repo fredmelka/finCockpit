@@ -9,10 +9,11 @@ let {strongBuy, buy, hold, sell, strongSell} = record;
 let recordRecos = [strongBuy, buy, hold, sell, strongSell];
 
 function stars(array) {
+    let factors = [5, 3, 1, -1, -2];
     let cleanrecos = array.map(value => (value) ? value : 0);
-    let points = cleanrecos.reduce((a, c, index) => a + c * (array.length - index), 0);
+    let points = cleanrecos.reduce((a, c, index) => a + c * factors[index], 0);
     let reviews = cleanrecos.reduce((a, c) => a + c, 0);
-return Math.round(2 * points / reviews) / 2;}
+return Math.round(10 * Math.max(0, points / (reviews * Math.max(...factors)))) / 2;}
 
 const content = (
     <>

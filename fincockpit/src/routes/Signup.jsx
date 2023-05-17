@@ -1,30 +1,33 @@
 
 import React, { useState }                  from "react";
 import { useNavigate }                      from 'react-router-dom';
-import { Input, Space }                     from "antd";
-import { getUser }                          from '../app/Crud'
+import { Input, Space, Typography }         from 'antd';
+import { createUser }                       from '../app/Crud.js'
 
 
-export default function Login () {
+export default function Signup () {
 
 let { Search } = Input;
+let { Text } = Typography;
 let [username, setUsername] = useState();
+let [userId, setUserId] = useState(null);
 let navigate = useNavigate();
 
 let updateName = (event) => {setUsername(event.target.value)};
 
-async function logUser (username) {
+async function signUp (x) {
 try {
-    let userObject = await getUser(username);
-    console.log(await userObject._id);
-    navigate(`/watchlist/${userObject._id}`);}
+    let user = await createUser(x);
+    console.log(await user);
+    setUserId(user)
+    return user}
 catch (error) {console.log(error)};
 };
 
 return (
     <>
-    <h2>I am the Login page!</h2>
-    <h3>Please enter your username to sign in</h3>
+    <h2>I am the Signup Page!</h2>
+    <h3>Please enter your username to sign Up</h3>
     <Space direction='vertical'>
         <Search
             addonBefore='Client'
@@ -34,7 +37,8 @@ return (
             placeholder='Username only please!'
             enterButton
             onChange={updateName}
-            onSearch={() => {logUser(username)}}/>
+            onSearch={() => {signUp(username)}}/>
+    {userId && <Text type='success'>You have successfully created your account! We are so happy that you join!</Text>}
     </Space>
     </>);
 };

@@ -9,12 +9,12 @@ const _collection = 'fredmelka-fincockpit';
 async function getUser (username) {
 try {
     let response = await axios.get(`${_apiUrl}${_collection}/?owner=${username}`);
-    let userObject = response.data;
+    let userObject = response.data[0];
     console.log(userObject);
-    if (Object.keys(userObject).length === 0) {console.log(`User not found. Please check or sign-up.`); return '';};
+    if (!userObject) {console.log(`User not found. Please check or sign-up.`); return '';};
 
     // Ironhack API is returning an array if the GET requests are not queried directly 'by id'
-    return userObject[0];
+    return userObject;
 } 
 catch (error) {console.log(error)};
 };
@@ -22,10 +22,11 @@ catch (error) {console.log(error)};
 
 // function that POST a new Object user to the database collection
 async function createUser (usernameToCreate) {
-if (getUser(usernameToCreate) != '') {console.log(`Name ${usernameToCreate} already exists.`); return;};
 try {
+    if (await getUser(usernameToCreate) !== '') {console.log(`Name ${usernameToCreate} already exists.`); return;};
     let response = await axios.post(`${_apiUrl}${_collection}/`, {'owner': usernameToCreate, 'watchlist': []})
     console.log(response);
+    return response.data.insertedId;
 }
 catch (error) {console.log(error)};
 };

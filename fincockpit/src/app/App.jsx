@@ -12,6 +12,7 @@ import Oopsies                          from '../routes/Oopsies.jsx';
 import Resources                        from '../routes/Resources.jsx';
 import Root                             from '../routes/Root.jsx';
 import Securities                       from '../routes/Securities.jsx';
+import Signup                           from '../routes/Signup.jsx';
 import Watchlist                        from '../routes/Watchlist.jsx';
 import Welcome                          from '../routes/Welcome.jsx';
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter( createRoutesFromElements(
     <Route path='/resources' element={ <Resources /> } />
 
     <Route path='/login' element={ <Login /> } />
+    <Route path='/signup' element={ <Signup />} />
 
     <Route path='*' element={ <Oopsies /> } />
   </Route>));
