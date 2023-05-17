@@ -68,5 +68,4 @@ try {
 catch (error) {console.log(error)};
 };
 
-
 export { getUser, getWatchlist, createUser, addToWatchlist, removeFromWatchlist };

@@ -10,6 +10,7 @@ const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=SYMB
 // Data retrieved from the AlphaVantage request seat under a key named 'bestMatches' (array of objects)
 // Array of symbols is collected here by grabbing the value of the key '1. symbol' of each object of the array
 
+
 export default function SymbolLookup ({updateMonitor}) {
 
 let { Search } = Input;
