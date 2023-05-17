@@ -12,11 +12,13 @@ const urlFinnhubCompanyProfile2 = 'https://finnhub.io/api/v1/stock/profile2?symb
 // API Endpoint URL to retrieve Analysts Recommendations Summmary
 const urlFinnhubCompanyRecommendation = 'https://finnhub.io/api/v1/stock/recommendation?symbol=';
 
+
 export default function Monitor({securitiesList}) {
 
 console.log(`Tickers to be fetched : ${securitiesList.join(' ')}`);
 
 let [data, setData] = useState([]);
+let userId = localStorage.getItem('myFinCockpituserId');
 
 // Function that builds [dataSource] required to render the <Table> Component
 async function getData() {
@@ -57,7 +59,7 @@ const Columns = [
                     render: (_, record) => (<RatingStar record={record}/>)},
 
     {title: 'WatchList', dataIndex: 'action', key: 'watchlist', align: 'center',
-                    render: (_, record) => ( <Button size='small' onClick={() => {addToWatchlist('64626285ed70adc2fc0fabb9', record.ticker, record.name)}}>Add</Button> )}
+                    render: (_, record) => ( <Button size='small' onClick={() => {addToWatchlist(userId, record.ticker, record.name)}}>Add</Button> )}
 ];
 
 return (

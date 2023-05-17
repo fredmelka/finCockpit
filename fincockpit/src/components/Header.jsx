@@ -1,10 +1,21 @@
 
-import React                        from "react";
-import { NavLink }                  from 'react-router-dom';
-import { Row, Col, Tag }                 from 'antd';
+import React from "react";
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Row, Col, Tag } from 'antd';
 
 
 export default function Header () {
+
+let navigate = useNavigate();
+
+let userId = localStorage.getItem('myFinCockpituserId');
+
+let logOut = () => {
+    localStorage.removeItem('myFinCockpituserId');
+    localStorage.removeItem('myFinCockpitusername');
+    navigate('/');
+};
 
 return (
     <header>
@@ -14,12 +25,10 @@ return (
         <NavLink to='/securities'>Securities</NavLink>
         <NavLink to='/watchlist'>Watch List</NavLink>
         <NavLink to='/resources'>Resources</NavLink>
-        <NavLink to='/login'><Tag color='red'>Log In</Tag></NavLink>
+        {(!userId) && <NavLink to='/login'><Tag color='green-inverse'>Log In</Tag></NavLink>}
+        {(userId) && <Tag onClick={logOut} color='red'>Log Out</Tag>}
         <NavLink to='/signup'><Tag color='geekblue-inverse'> Sign Up</Tag></NavLink>
     </Col>
-    {/* <Col span={4} offset={1}>
-        {/* <button onClick={()=>{}}>Log Out</button> */}
-    {/*</Col> */}
     </Row>
     </header>);
 };

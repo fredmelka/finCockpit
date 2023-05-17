@@ -17,6 +17,7 @@ return (
     <footer>
     <Divider>
         <Tag onClick={goBack}>Back</Tag>
+        <Tag color='geekblue-inverse'>{localStorage.getItem('myFinCockpitusername')}</Tag>
         <Text onClick={goHome} code >Web development ahead | Coders currently at work.</Text>
         <Tag onClick={goForward}>Forward</Tag>
     </Divider>

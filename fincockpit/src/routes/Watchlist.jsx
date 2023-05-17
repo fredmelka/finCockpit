@@ -1,7 +1,6 @@
 
 import React                                    from 'react';
 import { useState, useEffect }                  from 'react';
-import { useParams }                            from 'react-router-dom';
 import SecurityListCard                         from '../components/SecurityListCard';
 import SecurityDES                              from '../components/SecurityDESCard';
 import { Col, Row, Space  }                     from 'antd';
@@ -16,11 +15,12 @@ export default function Watchlist () {
 
 let [watchlist, setWatchlist] = useState([]);
 let [companyOverview, setCompanyOverview] = useState({});
-let { id } = useParams();
+
+let userId = localStorage.getItem('myFinCockpituserId');
 
 async function browseListFromUser() {
     let list = [];
-    try {list = await getWatchlist(id);}
+    try {list = await getWatchlist(userId);}
     catch (error) {console.log(error)};
     setWatchlist(list);
 };
@@ -36,23 +36,23 @@ catch (error) {console.log(error)};
 
 async function removeSecurity(ticker) {
 try {
-    let newList = await removeFromWatchlist(id, watchlist, ticker);
+    let newList = await removeFromWatchlist(userId, watchlist, ticker);
     setWatchlist(newList);
     setCompanyOverview({})}
 catch (error) {console.log(error)};
 };
 
-useEffect(() => { console.log('effect ran'); browseListFromUser();}, [id])
+useEffect(() => { console.log('effect ran'); browseListFromUser();}, [userId])
 console.log(watchlist);
 
 return (
     <>
     <h2>I am the Watchlist page!</h2>
-    {(!watchlist) && <p>You must log in to access your data dude!</p>}
+    {(!userId) && <p>You must log in to access your data dude!</p>}
     <Space direction='vertical' />
     <Row>
         <Col span={6} offset={1}>
-        {id && <SecurityListCard style={{textAlign: 'left'}} watchlist={watchlist} getSecurityOverview={getSecurityOverview} />}
+        {(userId) && <SecurityListCard style={{textAlign: 'left'}} watchlist={watchlist} getSecurityOverview={getSecurityOverview} />}
         </Col>
         <Col span={15} offset={1}>
         {watchlist && <SecurityDES companyOverview={companyOverview} removeSecurity={removeSecurity}/>}
