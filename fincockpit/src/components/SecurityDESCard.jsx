@@ -27,7 +27,6 @@ return (
         <Descriptions column={3}>
             <Descriptions.Item label='Country'>{Country}</Descriptions.Item>
             <Descriptions.Item label='Exchange'>{Exchange}</Descriptions.Item>
-            {/* <Descriptions.Item label='Currency'>{Currency}</Descriptions.Item> */}
             <Descriptions.Item label='Market Cap.'>{Currency ? `${Math.floor(MarketCapitalization / 1e9)} Mds ${Currency}` : ''}</Descriptions.Item>
             <Descriptions.Item label='Sector'><Tag>{Sector}</Tag></Descriptions.Item>
             <Descriptions.Item label='Industry' span={2}><Tag>{Industry}</Tag></Descriptions.Item>
