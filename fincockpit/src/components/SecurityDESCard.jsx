@@ -16,8 +16,7 @@ return (
         title={<Popover
                     content={Description}
                     placement='rightTop'
-                    title='Description'
-                    trigger='click'>
+                    title='Description'>
                 {Name}</Popover>}
 
         extra={<Button type='primary' danger onClick={() => removeSecurity(Symbol)}>Remove</Button>}
