@@ -45,10 +45,16 @@ catch (error) {console.log(error)};
 
 // function that PATCH an Object favorite = {ticker, companyname} in the Array watchlist from the Object user
 async function addToWatchlist (userId, ticker, companyName) {
+if (!userId) {console.log('no post since there is no user logged on!'); return;}; //avoid bug of adding a stock while not logged on
 try {
     let response = await axios.get(`${_apiUrl}${_collection}/${userId}`);
     let userObject = response.data;
     let { id, watchlist } = userObject;
+    
+    let isNewItemOrDouble = watchlist.find((security) => security.ticker === ticker) === undefined ?  true : false;
+    console.log(isNewItemOrDouble);
+    if (!isNewItemOrDouble) {console.log('no post since this ticker already exists in the watchlist!'); return;};
+
     let newWatchlist = [...watchlist, {"ticker": ticker, "companyname": companyName}];
     let patch = await axios.patch(`${_apiUrl}${_collection}/${userId}`, {"watchlist": newWatchlist});
     console.log('post?', patch);

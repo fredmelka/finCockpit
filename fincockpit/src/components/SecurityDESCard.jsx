@@ -11,7 +11,8 @@ let { AnalystTargetPrice, Country, Currency, Description, DividendYield, EPS, Ex
 return (
     <>
     <Space direction='vertical' />
-    <Card 
+    <Card
+        className='plastic'
         bordered
         title={<Popover
                     content={Description}

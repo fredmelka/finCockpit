@@ -45,7 +45,7 @@ main {
   height: 60vh;
 }
 
-#iamplastic {
+.plastic {
   overflow: auto;
   resize: both;
 }

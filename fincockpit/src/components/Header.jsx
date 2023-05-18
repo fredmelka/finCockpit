@@ -25,8 +25,9 @@ return (
         <NavLink to='/securities'>Securities</NavLink>
         <NavLink to='/watchlist'>Watch List</NavLink>
         <NavLink to='/resources'>Resources</NavLink>
-        {(!userId) && <NavLink to='/login'><Tag color='green-inverse'>Log In</Tag></NavLink>}
-        {(userId) && <Tag onClick={logOut} color='red'>Log Out</Tag>}
+        {(userId) 
+                ? <Tag onClick={logOut} color='red'>Log Out</Tag>
+                : <NavLink to='/login'><Tag color='#12934f'>Log In</Tag></NavLink>}
         <NavLink to='/signup'><Tag color='geekblue-inverse'> Sign Up</Tag></NavLink>
     </Col>
     </Row>

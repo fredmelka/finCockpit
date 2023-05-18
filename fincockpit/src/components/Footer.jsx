@@ -6,7 +6,9 @@ import { Divider, Tag, Typography } from 'antd';
 
 export default function Footer () {
 
-const  { Text } = Typography;
+let  { Text } = Typography;
+
+let userId = localStorage.getItem('myFinCockpituserId');
 
 let navigate = useNavigate();
 let goBack = () => {navigate(-1)};
@@ -17,7 +19,9 @@ return (
     <footer>
     <Divider>
         <Tag onClick={goBack}>Back</Tag>
-        <Tag color='geekblue-inverse'>{localStorage.getItem('myFinCockpitusername')}</Tag>
+        {(userId) 
+                ? <Tag color='#12934f'>{localStorage.getItem('myFinCockpitusername')}</Tag>
+                : <Tag color='geekblue-inverse'>No user connected</Tag>}
         <Text onClick={goHome} code >Web development ahead | Coders currently at work.</Text>
         <Tag onClick={goForward}>Forward</Tag>
     </Divider>
