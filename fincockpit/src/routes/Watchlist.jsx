@@ -3,7 +3,7 @@ import React                                    from 'react';
 import { useState, useEffect }                  from 'react';
 import SecurityListCard                         from '../components/SecurityListCard';
 import SecurityDES                              from '../components/SecurityDESCard';
-import { Col, Row, Space  }                     from 'antd';
+import { Col, message, Row, Space  }            from 'antd';
 import { getWatchlist, removeFromWatchlist }    from '../app/Crud.js';
 import { _AVapikey_1, _AVapikey_2 }             from '../keys.js';
 import axios                                    from 'axios';
@@ -13,10 +13,13 @@ const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=OVER
 
 export default function Watchlist () {
 
+let userId = localStorage.getItem('myFinCockpituserId');
+
 let [watchlist, setWatchlist] = useState([]);
 let [companyOverview, setCompanyOverview] = useState({});
 
-let userId = localStorage.getItem('myFinCockpituserId');
+let [messageApi, contextHolder] = message.useMessage();
+let messagePop = (type, value) => messageApi.open({type: type, content: value});
 
 async function browseListFromUser() {
     let list = [];
@@ -38,7 +41,8 @@ async function removeSecurity(ticker) {
 try {
     let newList = await removeFromWatchlist(userId, watchlist, ticker);
     setWatchlist(newList);
-    setCompanyOverview({})}
+    setCompanyOverview({});
+    messagePop('warning', `Ticker ${ticker} is deleted from watchlist`);}
 catch (error) {console.log(error)};
 };
 
@@ -47,6 +51,7 @@ console.log(watchlist);
 
 return (
     <>
+    {contextHolder}
     <h2>I am the Watchlist page!</h2>
     {(!userId) && <p>You must log in to access your data dude!</p>}
     <Space direction='vertical' />

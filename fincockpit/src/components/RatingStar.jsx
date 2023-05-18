@@ -1,5 +1,5 @@
 
-import React from "react";
+import React from 'react';
 import { Rate, Tooltip } from 'antd';
 
 export default function Rating ({record}) {

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React from 'react';
 import FAQ from '../../content/FAQ.js';
 import { Collapse, Col } from 'antd';
 

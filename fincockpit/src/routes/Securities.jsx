@@ -1,9 +1,9 @@
 
-import React                                from "react";
-import { useState }                         from "react";
-import Monitor                              from "../components/Monitor";
-import SymbolLookup                         from "../components/SymbolLookup";
-import IndexLookup                          from "../components/IndexLookup";
+import React                                from 'react';
+import { useState }                         from 'react';
+import Monitor                              from '../components/Monitor';
+import SymbolLookup                         from '../components/SymbolLookup';
+import IndexLookup                          from '../components/IndexLookup';
 import { Button, Col, Divider, Row, Space } from 'antd';
 
 
