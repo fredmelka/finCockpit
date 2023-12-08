@@ -1,8 +1,7 @@
 
 import React, { useState } from 'react';
 import { Input, message, Space, Typography } from 'antd';
-import { getUser } from '../app/Crud.js'
-
+import { getUser } from '../app/Crud.js';
 
 export default function Login () {
 

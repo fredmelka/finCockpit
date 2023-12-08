@@ -2,8 +2,7 @@
 import React, { useState }                  from 'react';
 import { useNavigate }                      from 'react-router-dom';
 import { Input, Space, Tag, Typography }    from 'antd';
-import { createUser }                       from '../app/Crud.js'
-
+import { createUser }                       from '../app/Crud.js';
 
 export default function Signup () {
 

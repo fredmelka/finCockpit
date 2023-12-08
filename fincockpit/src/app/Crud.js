@@ -1,9 +1,8 @@
 
-import axios from "axios";
+import axios from 'axios';
 
 const _apiUrl = 'https://ironrest.fly.dev/api/';
 const _collection = 'fredmelka-fincockpit';
-
 
 // function that GET the Object user = {_id, owner, watchlist} 
 async function getUser (username) {
@@ -19,7 +18,6 @@ try {
 catch (error) {console.log(error)};
 };
 
-
 // function that POST a new Object user to the database collection
 async function createUser (usernameToCreate) {
 try {
@@ -31,7 +29,6 @@ try {
 catch (error) {console.log(error)};
 };
 
-
 // function that GET the Array watchlist from the Object user
 async function getWatchlist (userId) {
 try {
@@ -41,7 +38,6 @@ try {
 }
 catch (error) {console.log(error)};
 };
-
 
 // function that PATCH an Object favorite = {ticker, companyname} in the Array watchlist from the Object user
 async function addToWatchlist (userId, ticker, companyName) {
@@ -61,7 +57,6 @@ try {
 }
 catch (error) {console.log(error)};
 };
-
 
 // function that PATCH a new Array watchlist from the user Object in order to remove one favorite = {ticker, companyname} 
 async function removeFromWatchlist (userId, watchlist, ticker) {

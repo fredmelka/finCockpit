@@ -3,9 +3,9 @@ import React from 'react';
 import FAQ from '../../content/FAQ.js';
 import { Collapse, Col } from 'antd';
 
-let { Panel } = Collapse;
-
 export default function Resources () {
+
+let { Panel } = Collapse;
 
 let onChange = (key) => {console.log(key);};
 

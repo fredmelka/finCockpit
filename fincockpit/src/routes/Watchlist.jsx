@@ -1,15 +1,14 @@
 
 import React                                    from 'react';
 import { useState, useEffect }                  from 'react';
-import SecurityListCard                         from '../components/SecurityListCard';
-import SecurityDES                              from '../components/SecurityDESCard';
+import SecurityListCard                         from '../pages/SecurityListCard';
+import SecurityDES                              from '../pages/SecurityDESCard';
 import { Col, message, Row, Space  }            from 'antd';
 import { getWatchlist, removeFromWatchlist }    from '../app/Crud.js';
 import { _AVapikey_1, _AVapikey_2 }             from '../keys.js';
 import axios                                    from 'axios';
 
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=OVERVIEW';
-
 
 export default function Watchlist () {
 
