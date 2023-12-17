@@ -1,25 +1,23 @@
 
-import React                        from 'react';
-import { useState }                 from 'react';
-import axios                        from 'axios';
-import { Input, Space }             from 'antd';
-import { _FinnhubToken_1 }          from '../keys.js';
+import React, {useState} from 'react';
+import axios from 'axios';
+import {Input, Space} from 'antd';
+import {_FinnhubToken_1} from '../utils/Keys.js';
 
+// GET request to <finnhub.io> @ 'SYMBOL_LOOKUP' endpoint
 const urlEndpointFinnhub = 'https://finnhub.io/api/v1/index/constituents?symbol=';
-
 
 export default function IndexLookup ({updateMonitor}) {
 
-let { Search } = Input;
 let [lookup, setLookup] = useState('');
+let {Search} = Input;
 
 let updateLookup = (event) => setLookup(event.target.value);
 
-async function getIndexMembers (value) {
+let getIndexMembers = async (value) => {
 try {
-    // GET Request right below is sent to <finnhub.io> @ the 'Symbol_lookup' endpoint
-    let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${_FinnhubToken_1}`);
 
+    let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${_FinnhubToken_1}`);
     // Data retrieved from the finnhub request is under key 'bestMatches' (array of objects)
     updateMonitor(response.data.constituents);
     setLookup('');}
@@ -37,7 +35,7 @@ return (
             placeholder='Dow Jones, S&P500, Nasdaq, etc.'
             enterButton
             onChange={updateLookup}
-            onSearch={getIndexMembers} />
+            onSearch={getIndexMembers}/>
     </Space>
     </>);
 };

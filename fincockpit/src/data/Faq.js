@@ -1,5 +1,5 @@
 
-const FAQ = [
+const Faq = [
     {
         question: 'Where is Brian ?... Bryan is in the kitchen!',
         answer:  'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus condimentum nisi ipsum, id faucibus dui accumsan at. Nullam quis felis tortor. Morbi porttitor metus nibh, at sodales ligula commodo nec. Vivamus mauris ligula, scelerisque eget libero sed, mattis tincidunt urna. Nunc eleifend neque ac nunc.'
@@ -14,4 +14,4 @@ const FAQ = [
     }
 ];
 
-export default FAQ;
+export default Faq;

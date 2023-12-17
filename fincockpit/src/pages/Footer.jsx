@@ -1,29 +1,26 @@
 
-import React                        from 'react';
-import { useNavigate }              from 'react-router-dom';
-import { Divider, Tag, Typography } from 'antd';
-
+import React, {useContext}          from 'react';
+import {useNavigate}                from 'react-router-dom';
+import {AuthContext}                from '../context/Auth.context.jsx';
+import {Divider, Tag, Typography}   from 'antd';
 
 export default function Footer () {
 
-let  { Text } = Typography;
-
-let userId = localStorage.getItem('myFinCockpituserId');
-
+let {userName, userId} = useContext(AuthContext);
+let {Text} = Typography;
 let navigate = useNavigate();
-let goBack = () => {navigate(-1)};
-let goForward = () => {navigate(+1)};
-let goHome = () => {navigate('/')}
+
+let goHome = () => navigate('/'); let goBack = () => navigate(-1); let goForward = () => navigate(+1);
 
 return (
     <footer>
     <Divider>
-        <Tag onClick={goBack}>Back</Tag>
-        {(userId) 
-                ? <Tag color='#12934f'>{localStorage.getItem('myFinCockpitusername')}</Tag>
-                : <Tag color='geekblue-inverse'>No user connected</Tag>}
-        <Text onClick={goHome} code >Web development ahead | Coders currently at work.</Text>
-        <Tag onClick={goForward}>Forward</Tag>
+        {(userId)
+                ? <Tag color='#12934f'>{userName}</Tag>
+                : <Tag color='#1f1f1f'>No user connected</Tag>}
+        <Text onClick={goHome} code>Web development ahead | Coders currently at work!</Text>
+        <Tag color='geekblue-inverse' onClick={goBack}>Back</Tag>
+        <Tag  color='geekblue-inverse' onClick={goForward}>Forward</Tag>
     </Divider>
     </footer>);
 };

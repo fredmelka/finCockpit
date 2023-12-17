@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Button, Card, Descriptions, Space, Popover, Tag } from 'antd';
-
+import {Button, Card, Descriptions, Space, Popover, Tag} from 'antd';
 
 export default function SecurityDES({companyOverview, removeSecurity}) {
 
@@ -15,10 +14,10 @@ return (
         className='plastic'
         bordered
         title={<Popover
-                    content={Description}
-                    placement='rightTop'
-                    title='Description'>
-                {Name}</Popover>}
+            content={Description}
+            placement='rightTop'
+            title='Description'>
+            {Name}</Popover>}
 
         extra={<Button type='primary' danger onClick={() => removeSecurity(Symbol)}>Remove</Button>}
         headStyle={{textAlign: 'left'}}

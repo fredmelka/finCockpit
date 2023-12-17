@@ -1,17 +1,15 @@
 
-import React                                from 'react';
-import { useState }                         from 'react';
-import Monitor                              from '../pages/Monitor';
-import SymbolLookup                         from '../pages/SymbolLookup';
-import IndexLookup                          from '../pages/IndexLookup';
-import { Button, Col, Divider, Row, Space } from 'antd';
-
+import React, {useState} from 'react';
+import {Button, Col, Divider, Row, Space} from 'antd';
+import Monitor from '../pages/Monitor.jsx';
+import SymbolLookup from '../pages/SymbolLookup.jsx';
+import IndexLookup from '../pages/IndexLookup.jsx';
 
 export default function Securities () {
 
-let [securitiesList, setSecuritiesList]     = useState([]);
-let [showLookupBar, setLookupBar]           = useState(false);
-let [showStockList, setShowStockList]       = useState(false);
+let [securitiesList, setSecuritiesList] = useState([]);
+let [showLookupBar, setLookupBar] = useState(false);
+let [showStockList, setShowStockList] = useState(false);
 
 let updateMonitor = (array) => setSecuritiesList(array);
 
