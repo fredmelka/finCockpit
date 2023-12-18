@@ -50,14 +50,21 @@ useEffect(() => {getData()}, [securitiesList]);
 const Columns = [
     {title: 'Ticker', dataIndex: 'ticker', key: 'ticker',
                     render: (_, record) => (<Tag color='geekblue-inverse'>{record.ticker}</Tag>)},
+
     {title: 'Company Name', dataIndex: 'name', key: 'name',
-                    render: (_, record) => (<a href={record.weburl} target='_blank'>{record.name}</a>)},
-    {title: 'Industry', dataIndex: 'finnhubIndustry', key: 'finnhubIndustry'},
+                    render: (_, record) => (<a href={record.weburl} target='_blank'>{record.name}</a>),
+                    sorter: (a,b) => a.name > b.name ? 1 : -1},
+
+    {title: 'Industry', dataIndex: 'finnhubIndustry', key: 'finnhubIndustry',
+                    sorter: (a,b) => a.finnhubIndustry > b.finnhubIndustry ? 1 : -1},
 
     {title: 'Market Cap.', dataIndex: 'marketCapitalization', key: 'marketCapitalization',
-                    render: (_, record) => (<span>{`${Math.floor(record.marketCapitalization / 10) / 100} Mds`}</span>)},
+                    render: (_, record) => (<span>{`${Math.floor(record.marketCapitalization / 10) / 100} Mds`}</span>),
+                    sorter: (a,b) => a.marketCapitalization - b.marketCapitalization},
+
     {title: 'Recommendations', dataIndex: 'buy', key: 'buy',
                     render: (_, record) => (<RatingStar record={record}/>)},
+
     {title: 'WatchList', dataIndex: 'action', key: 'watchlist', align: 'center',
                     render: (_, record) => (<Button size='small'
                                                     onClick={() => {addToWatchlist(userId, record.ticker, record.name); messagePop('info', `Adding ${record.name} in Watchlist!`)}}>

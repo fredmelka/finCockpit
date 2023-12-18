@@ -8,7 +8,7 @@ import SecurityDES from '../pages/SecurityDESCard.jsx';
 import {getWatchlist, removeFromWatchlist} from '../utils/Crud.js';
 import {_AVapikey_1, _AVapikey_2} from '../utils/Keys.js';
 
-// GET request to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
+// GET request to <alphavantage.co> @ 'OVERVIEW' endpoint
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=OVERVIEW';
 
 export default function Watchlist () {

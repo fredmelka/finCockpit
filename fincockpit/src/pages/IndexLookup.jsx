@@ -1,25 +1,31 @@
 
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Input, Space} from 'antd';
-import {_FinnhubToken_1} from '../utils/Keys.js';
+import {Select, Space} from 'antd';
+import {_FMPapikey_1} from '../utils/Keys.js';
 
-// GET request to <finnhub.io> @ 'SYMBOL_LOOKUP' endpoint
-const urlEndpointFinnhub = 'https://finnhub.io/api/v1/index/constituents?symbol=';
+// GET request to <financialmodelingprep.com> @ e.g. 'NASDAQ_CONSTITUENT' endpoint
+const urlEndpointFMP = 'https://financialmodelingprep.com/api/v3/';
+// Array of underlyings to fetch constituents: e.g. NDX, DJI
+const options = [
+    {value: 'dowjones_constituent', label: 'Dow Jones Industrial Average Index (DJI)'},
+    {value: 'nasdaq_constituent', label: 'Nasdaq 100 Index (NDX)'},
+    {value: 'sp500_constituent', label: 'S&P 500 Index (SPX)', disabled: true},
+    {value: 'stock_market/gainers', label: 'US Market Gainers (MOV+)'},
+    {value: 'stock_market/losers', label: 'US Market Losers (MOV-)'},
+];
 
 export default function IndexLookup ({updateMonitor}) {
 
 let [lookup, setLookup] = useState('');
-let {Search} = Input;
 
-let updateLookup = (event) => setLookup(event.target.value);
+let updateLookup = (value) => setLookup(value);
 
 let getIndexMembers = async (value) => {
 try {
-
-    let response = await axios.get(`${urlEndpointFinnhub}${value}&token=${_FinnhubToken_1}`);
-    // Data retrieved from the finnhub request is under key 'bestMatches' (array of objects)
-    updateMonitor(response.data.constituents);
+    let response = await axios.get(`${urlEndpointFMP}${value}?apikey=${_FMPapikey_1}`);
+    let constituents = response.data.map(constituent => constituent.symbol);
+    updateMonitor(constituents);
     setLookup('');}
 catch (error) {console.log(error);};
 };
@@ -27,15 +33,13 @@ catch (error) {console.log(error);};
 return (
     <>
     <Space direction='vertical'>
-        <Search
-            addonBefore='Index'
+        <Select
+            style={{width: 300}}
             allowClear
-            type='text'
-            value={lookup}
-            placeholder='Dow Jones, S&P500, Nasdaq, etc.'
-            enterButton
+            options={options}
+            placeholder='Dow Jones, Nasdaq, etc.'
             onChange={updateLookup}
-            onSearch={getIndexMembers}/>
+            onSelect={getIndexMembers}/>
     </Space>
     </>);
 };

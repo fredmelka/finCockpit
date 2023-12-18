@@ -27,10 +27,10 @@ return (
 
     <Row>
         <Col span={12}>
-        {showLookupBar && <IndexLookup updateMonitor={updateMonitor} />}
+        {showLookupBar && <IndexLookup updateMonitor={updateMonitor}/>}
         </Col>
         <Col span={12}>
-        {showLookupBar && <SymbolLookup updateMonitor={updateMonitor} />}
+        {showLookupBar && <SymbolLookup updateMonitor={updateMonitor}/>}
         </Col>
     </Row>
 
@@ -41,7 +41,7 @@ return (
     </Divider>
 
     <Space direction='vertical' size='middle'>
-        {showStockList && <Monitor securitiesList={securitiesList} />}
+        {showStockList && <Monitor securitiesList={securitiesList}/>}
     </Space>
     </>);
 };
