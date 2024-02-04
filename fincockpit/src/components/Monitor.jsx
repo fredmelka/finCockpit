@@ -7,10 +7,10 @@ import {AuthContext} from '../context/Auth.context.jsx';
 import {addToWatchlist} from '../utils/Crud.js';
 import {_FinnhubToken_1, _FinnhubToken_2} from '../utils/Keys.js';
 
-// API Endpoint Company_Profile_2
-const urlFinnhubCompanyProfile2 = 'https://finnhub.io/api/v1/stock/profile2?symbol=';
-// API Endpoint Recommendation_Trends
-const urlFinnhubCompanyRecommendation = 'https://finnhub.io/api/v1/stock/recommendation?symbol=';
+// API Endpoint COMPANY_PROFILE_2
+const urlFinnhub_CompanyProfile2 = 'https://finnhub.io/api/v1/stock/profile2?symbol=';
+// API Endpoint RECOMMENDATION_TRENDS
+const urlFinnhub_CompanyRecommendation = 'https://finnhub.io/api/v1/stock/recommendation?symbol=';
 
 export default function Monitor({securitiesList}) {
 
@@ -28,10 +28,10 @@ let getData = async () => {
     messagePop('loading', 'Loading data, please wait!');
     for (let i=0; i < securitiesList.length; i++) {
         try {
-            let responseProfile2 = await axios.get(`${urlFinnhubCompanyProfile2}${securitiesList[i]}&token=${_FinnhubToken_1}`);
+            let responseProfile2 = await axios.get(`${urlFinnhub_CompanyProfile2}${securitiesList[i]}&token=${_FinnhubToken_1}`);
             let profile = responseProfile2.data;
 
-            let responseRecommendation = await axios.get(`${urlFinnhubCompanyRecommendation}${securitiesList[i]}&token=${_FinnhubToken_2}`);            
+            let responseRecommendation = await axios.get(`${urlFinnhub_CompanyRecommendation}${securitiesList[i]}&token=${_FinnhubToken_2}`);            
             let lastReco = responseRecommendation.data[0];
 
             let securityData = Object.assign(profile, lastReco);
@@ -76,7 +76,7 @@ return (
     <>
     {contextHolder}
     <Skeleton active loading={data.length === 0} title={false} paragraph={{rows: 3, width: 800}}>
-        <Table dataSource={data} columns={Columns}/>
+        <Table dataSource={data} columns={Columns} />
     </Skeleton>
     </>);
 };

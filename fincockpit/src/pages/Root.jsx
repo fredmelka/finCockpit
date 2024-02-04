@@ -1,17 +1,17 @@
 
 import React from 'react';
 import {Outlet} from 'react-router-dom';
-import Header from '../pages/Header.jsx';
-import Footer from '../pages/Footer.jsx';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
 
 export default function Root () {
 
 return (
     <>
-    <Header />
+    <Header/>
     <main>
-        <Outlet />
+        <Outlet/>
     </main>
-    <Footer />    
+    <Footer/>   
     </>);
 };

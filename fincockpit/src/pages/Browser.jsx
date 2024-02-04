@@ -1,11 +1,11 @@
 
 import React, {useState} from 'react';
 import {Button, Col, Divider, Row, Space} from 'antd';
-import Monitor from '../pages/Monitor.jsx';
-import SymbolLookup from '../pages/SymbolLookup.jsx';
-import IndexLookup from '../pages/IndexLookup.jsx';
+import Monitor from '../components/Monitor.jsx';
+import SymbolLookup from '../components/SymbolLookup.jsx';
+import IndexLookup from '../components/IndexLookup.jsx';
 
-export default function Securities () {
+export default function Browser () {
 
 let [securitiesList, setSecuritiesList] = useState([]);
 let [showLookupBar, setLookupBar] = useState(false);

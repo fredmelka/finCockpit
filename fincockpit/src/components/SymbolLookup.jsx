@@ -4,7 +4,7 @@ import axios from 'axios';
 import {Input, Space} from 'antd';
 import {_AVapikey_1, _AVapikey_2} from '../utils/Keys.js';
 
-// GET request to <alphavantage.co> @ 'SYMBOL_SEARCH' endpoint
+// API Endpoint SYMBOL_SEARCH
 const urlEndpointAlphaVantage = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH';
 // Data retrieved seat under a property named 'bestMatches' which is an array of objects
 // Array of symbols is collected here by grabbing the value of the key '1. symbol' of each object of the array
@@ -37,7 +37,7 @@ return (
             placeholder='Ticker, Name, CUSIP, etc.'
             enterButton
             onChange={updateLookup}
-            onSearch={lookupSymbol}/>
+            onSearch={lookupSymbol} />
     </Space>
     </>);
 };
