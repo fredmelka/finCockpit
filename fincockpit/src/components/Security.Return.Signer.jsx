@@ -1,5 +1,5 @@
 
-import {useEffect, useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Tag} from 'antd';
 
 export default function Signer ({value}) {
@@ -7,7 +7,7 @@ export default function Signer ({value}) {
 let [sign, setSign] = useState();
 let toggleSign = () => value > 0 ? setSign(true) : setSign(false);
 
-useEffect(toggleSign, []);
+useEffect(toggleSign, [value]);
 
 return (
     <>

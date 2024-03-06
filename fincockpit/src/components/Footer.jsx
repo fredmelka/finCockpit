@@ -20,7 +20,7 @@ return (
                 : <Tag color='#1f1f1f'>No user connected</Tag>}
         <Text onClick={goHome} code>Web development ahead | Coders currently at work!</Text>
         <Tag color='geekblue-inverse' onClick={goBack}>Back</Tag>
-        <Tag  color='geekblue-inverse' onClick={goForward}>Forward</Tag>
+        <Tag color='geekblue-inverse' onClick={goForward}>Forward</Tag>
     </Divider>
     </footer>);
 };

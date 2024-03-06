@@ -20,8 +20,8 @@ return (
         {(isLogged)
             ? <NavLink to='/'><Tag color='#ff7875' onClick={logOut}>Logout</Tag></NavLink>
             : <>
-            <NavLink to='/login'><Tag color='#12934f'>Log In</Tag></NavLink>
-            <NavLink to='/signup'><Tag color='geekblue-inverse'> Sign Up</Tag></NavLink>
+            <NavLink to='/login'><Tag color='#12934f'>Log in</Tag></NavLink>
+            <NavLink to='/signup'><Tag color='geekblue-inverse'> Sign up</Tag></NavLink>
             </>}
     </Col>
     </Row>

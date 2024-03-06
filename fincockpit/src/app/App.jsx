@@ -1,6 +1,7 @@
 
 import React from 'react';
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
+
 import About        from '../pages/About.jsx';
 import Browser      from '../pages/Browser.jsx';
 import ErrorPage    from '../pages/Error.jsx';
@@ -12,6 +13,9 @@ import Security     from '../pages/Security.jsx';
 import Signup       from '../pages/Signup.jsx';
 import Watchlist    from '../pages/Watchlist.jsx';
 import Welcome      from '../pages/Welcome.jsx';
+
+// TEST WORKING PAGE test page for websocket !!
+import Quoter       from '../pages/Quoter.jsx';
 
 import './App.css';
 
@@ -35,6 +39,8 @@ const router = createBrowserRouter( createRoutesFromElements(
     <Route path='/signup' element={<Signup />} />
 
     <Route path='*' element={<Oopsies />} />
+
+    <Route path='/quoter' element={<Quoter />} />
   </Route>));
 
 return (

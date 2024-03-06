@@ -19,7 +19,7 @@ export default function IndexLookup ({updateMonitor}) {
 
 let [lookup, setLookup] = useState('');
 
-let updateLookup = (value) => setLookup(value);
+let updateLookup = (value) => {setLookup(value);};
 
 let getIndexMembers = async (value) => {
 try {

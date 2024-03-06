@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useOutletContext, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Button, Card, Empty, Popover, Space} from 'antd';
+import {Button, Card, Empty, Popover, Space, Tabs} from 'antd';
 
 import SecurityProfile from '../components/Security.Profile.jsx';
 import SecurityMetrics from '../components/Security.Metrics.jsx';
@@ -38,39 +38,43 @@ try {
     let profileData = response.data[0]; setProfile(profileData);}
 catch (error) {console.log(error);};
 };
-
 let getMetrics = async (ticker) => {
 try {
     let response = await axios.get(`${urlEndpointFMP_keyMetrics}${ticker}?period=annual&apikey=${_FMPapikey_1}`);
     let metricsData = response.data[0]; setMetrics(metricsData);}
 catch (error) {console.log(error);};
 };
-
 let getQuote = async (ticker) => {
 try {
     let response = await axios.get(`${urlEndpointFMP_quote}${ticker}?apikey=${_FMPapikey_1}`);
     let quoteData = response.data[0]; setQuote(quoteData);}
 catch (error) {console.log(error);};
 };
-
 let getReturns = async (ticker) => {
-    try {
-        let response = await axios.get(`${urlEndpointFMP_priceReturn}${ticker}?apikey=${_FMPapikey_1}`);
-        let returnsData = response.data[0]; setReturns(returnsData);}
-    catch (error) {console.log(error);};
-    };
-
+try {
+    let response = await axios.get(`${urlEndpointFMP_priceReturn}${ticker}?apikey=${_FMPapikey_1}`);
+    let returnsData = response.data[0]; setReturns(returnsData);}
+catch (error) {console.log(error);};
+};
 let handleRemove = async () => {
     await removeSecurityFromWatchlist(security);
     setProfile({}); setSecurity();
     navigate('/watchlist');
 };
 
-useEffect(() => setSecurity(ticker), []);
+useEffect(() => {setSecurity(ticker);}, [ticker]);
 useEffect(() => {getProfile(ticker);}, [ticker]);
 useEffect(() => {getMetrics(ticker);}, [ticker]);
 useEffect(() => {getQuote(ticker);}, [ticker]);
 useEffect(() => {getReturns(ticker);}, [ticker]);
+
+let items = [
+    {key: '1', label: 'Company profile', children: (<SecurityProfile profile={profile} />)},
+    {key: '2', label: 'Market quote', children: (<SecurityQuote quote={quote} profile={profile} />)},
+    {key: '3', label: 'Stock returns', children: (<SecurityReturns returns={returns} />)},
+    {key: '4', label: 'Fundamentals', children: (<SecurityMetrics metrics={metrics} profile={profile} />)},
+    {key: '5', label: 'Charts', children: (<></>)},
+];
 
 return (
     <>
@@ -87,15 +91,9 @@ return (
 
     <Space direction='vertical'>
     {profile // to change HERE ***** WHAT TO CHANGE ?? => INVESTIGATE TO REMEMBER AND EVENTUALLY UPDATE !
-        ? <>
-            <SecurityProfile profile={profile} />
-            <SecurityMetrics metrics={metrics} profile={profile} />
-            <SecurityQuote quote={quote} profile={profile} />
-            <SecurityReturns returns={returns} />
-        </>
+        ? <Tabs defaultActiveKey='1' size='large' items={items} /*onChange={}*/ />
         : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={false} />}
     </Space>
-    
     </Card>
     </>);
 };
