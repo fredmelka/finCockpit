@@ -1,58 +1,52 @@
 
-import {useState, useEffect} from 'react';
-
-const socket = new WebSocket(`wss://ws.bitstamp.net`); console.log(socket);
+import {useState, useEffect, useRef} from 'react';
+import {Avatar, List, Tag} from 'antd';
+import cryptoCurrencies from '../data/Cryptos.json';
 
 export default function LiveCryptocurrencies () {
 
-let [livePrice, setLivePrice] = useState({});
-
-// console.log(livePrice);
+let [quotes, setQuotes] = useState({});
+let connection = useRef(new WebSocket(`wss://ws.bitstamp.net`));
+let list = useRef(cryptoCurrencies);
 
 let subscribe = () => {
-    socket.addEventListener('open', function (event) {
-        console.log('connecting!');
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_btcusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_ethusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_usdtusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_usdcusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_xrpusd'}}));    
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_adausd'}}));    
-        socket.send(JSON.stringify({'event': 'bts:subscribe', 'data': {'channel': 'live_trades_solusd'}}));
-    });   
-    socket.addEventListener('message', function (event) {
-        let message = JSON.parse(event.data);
-        // console.log('foe', message);
-        console.log(`Traded! ${message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)} @ ${message.data.price}`);
-        // setLivePrice(message.data.price);
-        let securityUpdate = {};
-        securityUpdate[message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)] = message.data.price;
-        setLivePrice(livePrice => ({...livePrice, ...securityUpdate}));
-    });
+connection.current.onopen = (event) => {
+for (let crypto of list.current) {
+    let channel = {event: 'bts:subscribe', data: {channel: `live_trades_${crypto.currencyPair}`}};
+    connection.current.send(JSON.stringify(channel));};
+};   
+connection.current.onmessage = (event) => {
+let message = JSON.parse(event.data);
+let currencyUpdate = {};
+if (message.data.price) {
+    currencyUpdate[message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)] = message.data.price;
+    setQuotes(quotes => ({...quotes, ...currencyUpdate}));};
+};
 };
 
 let unsubscribe = () => {
-    console.log('bye!', socket.readyState);
-    if (socket.readyState > 0) {
-        console.log('unsubscribe and close!');
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_btcusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_ethusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_usdtusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_usdcusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_xrpusd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_adausd'}}));
-        socket.send(JSON.stringify({'event': 'bts:unsubscribe', 'data': {'channel': 'live_trades_solusd'}}));
-        socket.close();
-    };
+if (connection.current.readyState > 0) {
+console.log('Disconnecting!', connection.current.readyState);
+for (let crypto of list.current) {
+    let channel = {event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.currencyPair}`}};
+    connection.current.send(JSON.stringify(channel));};
+connection.current.close();
+};
 };
 
-useEffect(() => {console.log('effect ran!'); subscribe(); return () => {unsubscribe();};}, []);
+useEffect(() => {subscribe(); return () => {unsubscribe();};}, []);
 
-// console.log(livePrice);
+let data = list.current.map(currency => {let price = quotes[currency.currencyPair]; return {...currency, price}});
 
 return (
     <>
-    {Object.entries(livePrice).map(security => (<p key={security}>{security[0]} ? <strong>{security[1]}</strong></p>))}
-    {/* <p>Quote ? <strong>{livePrice}</strong></p> */}
+    <List
+        size = 'small'
+        itemLayout ='horizontal'
+        header = {<strong>Crypto assets</strong>}
+        dataSource = {data}
+        renderItem = {(item, index) => (
+            <List.Item key={index}> <Avatar src={item.img} /> <Tag color='lightgray'>{item.ticker}</Tag> {item.name} <strong>{item.price}</strong></List.Item>)}
+        style = {{textAlign: 'left'}} />
     </>);
 };

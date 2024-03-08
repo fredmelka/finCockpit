@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Bitcoin",
+        "ticker": "BTC",
+        "img": "./assets/BTC.svg",
+        "currencyPair": "btcusd"
+    },
+    {
+        "name": "Ethereum",
+        "ticker": "ETH",
+        "img": "./assets/ETH.svg",
+        "currencyPair": "ethusd"
+    },
+    {
+        "name": "Tether",
+        "ticker": "USDT",
+        "img": "./assets/USDT.svg",
+        "currencyPair": "usdtusd"
+    },
+    {
+        "name": "Solana",
+        "ticker": "SOL",
+        "img": "./assets/SOL.svg",
+        "currencyPair": "solusd"
+    },
+    {
+        "name": "XRP",
+        "ticker": "XRP",
+        "img": "./assets/XRP.svg",
+        "currencyPair": "xrpusd"
+    },
+    {
+        "name": "USD Coin",
+        "ticker": "USDC",
+        "img": "./assets/USDC.svg",
+        "currencyPair": "usdcusd"
+    },
+    {
+        "name": "Cardano",
+        "ticker": "ADA",
+        "img": "./assets/ADA.svg",
+        "currencyPair": "adausd"
+    }
+]
