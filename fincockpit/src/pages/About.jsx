@@ -8,7 +8,6 @@ let {Text} = Typography;
 
 return (
     <>
-    <main id='homepage'>
     <Space direction='vertical'>
         <h2>I am the About page!</h2>
         <Card className='plastic' bordered title='the finCockpit Project'>
@@ -17,6 +16,5 @@ return (
         <Text>Meanwhile, practise having plastic mindset like this card on this page! Cheers.</Text>
         </Card>
     </Space>
-    </main>
     </>);
 };

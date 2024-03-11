@@ -22,7 +22,7 @@ let [data, setData] = useState([]);
 let [messageApi, contextHolder] = message.useMessage();
 let messagePop = (type, value) => messageApi.open({type: type, content: value});
 
-// Function that builds [dataSource] required to render the <Table> Component
+// Function that builds [dataSource] required to render the <Table> component
 let getData = async () => {
     let info = [];
     messagePop('loading', 'Loading data, please wait!');
@@ -43,11 +43,11 @@ let getData = async () => {
     setData(info);
     messagePop('success', 'Data retrieved!');
 };
-    
+
 useEffect(() => {getData()}, [securitiesList]);
 
-// Setting of the [Columns] required to build the <Table> Component
-const Columns = [
+// Setting of the [Columns] required to build the <Table> component
+const columns = [
     {title: 'Ticker', dataIndex: 'ticker', key: 'ticker',
                     render: (_, record) => (<Tag color='geekblue-inverse'>{record.ticker}</Tag>)},
     {title: 'Company Name', dataIndex: 'name', key: 'name',
@@ -71,7 +71,7 @@ return (
     <>
     {contextHolder}
     <Skeleton active loading={data.length === 0} title={false} paragraph={{rows: 3, width: 800}}>
-        <Table dataSource={data} columns={Columns} />
+        <Table dataSource={data} columns={columns} />
     </Skeleton>
     </>);
 };

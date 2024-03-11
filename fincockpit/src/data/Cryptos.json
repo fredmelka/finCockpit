@@ -3,42 +3,49 @@
         "name": "Bitcoin",
         "ticker": "BTC",
         "img": "./assets/BTC.svg",
-        "currencyPair": "btcusd"
+        "pair": "btcusd",
+        "webUrl": "https://www.bitstamp.net/markets/btc/usd/"
     },
     {
         "name": "Ethereum",
         "ticker": "ETH",
         "img": "./assets/ETH.svg",
-        "currencyPair": "ethusd"
+        "pair": "ethusd",
+        "webUrl": "https://www.bitstamp.net/markets/eth/usd/"
     },
     {
         "name": "Tether",
         "ticker": "USDT",
         "img": "./assets/USDT.svg",
-        "currencyPair": "usdtusd"
+        "pair": "usdtusd",
+        "webUrl": "https://www.bitstamp.net/markets/usdt/usd/"
     },
     {
         "name": "Solana",
         "ticker": "SOL",
         "img": "./assets/SOL.svg",
-        "currencyPair": "solusd"
+        "pair": "solusd",
+        "webUrl": "https://www.bitstamp.net/markets/sol/usd/"
     },
     {
         "name": "XRP",
         "ticker": "XRP",
         "img": "./assets/XRP.svg",
-        "currencyPair": "xrpusd"
+        "pair": "xrpusd",
+        "webUrl": "https://www.bitstamp.net/markets/xrp/usd/"
     },
     {
         "name": "USD Coin",
         "ticker": "USDC",
         "img": "./assets/USDC.svg",
-        "currencyPair": "usdcusd"
+        "pair": "usdcusd",
+        "webUrl": "https://www.bitstamp.net/markets/usdc/usd/"
     },
     {
         "name": "Cardano",
         "ticker": "ADA",
         "img": "./assets/ADA.svg",
-        "currencyPair": "adausd"
+        "pair": "adausd",
+        "webUrl": "https://www.bitstamp.net/markets/ada/usd/"
     }
 ]

@@ -18,7 +18,7 @@ return (
         {(userId)
                 ? <Tag color='#12934f'>{userName}</Tag>
                 : <Tag color='#1f1f1f'>No user connected</Tag>}
-        <Text onClick={goHome} code>Web development ahead | Coders currently at work!</Text>
+        <Text onClick={goHome} code>Coders at work | Show me the money baby!</Text>
         <Tag color='geekblue-inverse' onClick={goBack}>Back</Tag>
         <Tag color='geekblue-inverse' onClick={goForward}>Forward</Tag>
     </Divider>

@@ -2,8 +2,8 @@
 import React, {useState} from 'react';
 import {Button, Col, Divider, Row, Space} from 'antd';
 import Monitor from '../components/Monitor.jsx';
-import SymbolLookup from '../components/SymbolLookup.jsx';
-import IndexLookup from '../components/IndexLookup.jsx';
+import SymbolLookup from '../components/Lookup.Symbol.jsx';
+import IndexLookup from '../components/Lookup.Index.jsx';
 
 export default function Browser () {
 

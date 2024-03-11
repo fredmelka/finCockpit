@@ -14,9 +14,6 @@ import Signup       from '../pages/Signup.jsx';
 import Watchlist    from '../pages/Watchlist.jsx';
 import Welcome      from '../pages/Welcome.jsx';
 
-// TEST WORKING PAGE test page for websocket !!
-import Quoter       from '../pages/Quoter.jsx';
-
 import './App.css';
 
 export default function App() {
@@ -40,11 +37,10 @@ const router = createBrowserRouter( createRoutesFromElements(
 
     <Route path='*' element={<Oopsies />} />
 
-    <Route path='/quoter' element={<Quoter />} />
   </Route>));
 
 return (
   <>
-  <RouterProvider router={router}/>
+  <RouterProvider router={router} />
   </>);
 };
