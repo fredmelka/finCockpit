@@ -1,16 +1,18 @@
 
 import {useState, useEffect, useRef} from 'react';
-import {Avatar, Table, Tag} from 'antd';
+import {Avatar, Switch, Table, Tag} from 'antd';
 import cryptoCurrencies from '../data/Cryptos.json';
 
 export default function LiveCryptoCurrencies () {
 
 let [quotes, setQuotes] = useState({});
+let [active, setActive] = useState(true);
 let connection = useRef(null); if (connection.current === null) {connection.current = new WebSocket(`wss://ws.bitstamp.net`);};
 let list = useRef(null); if (list.current === null) {list.current = cryptoCurrencies;};
 // React approach to avoid reloading Ref contents (especially if expensive objects)
 
 let subscribe = () => {
+if (!active) {return;}; setQuotes({});
 connection.current.onopen = (event) => {
 for (let crypto of list.current) {
     let channel = {event: 'bts:subscribe', data: {channel: `live_trades_${crypto.pair}`}};
@@ -27,14 +29,16 @@ if (message.data.price) {
 };
 
 let unsubscribe = () => {
+if (!active) {return;};
 if (connection.current.readyState > 0) {console.log(`Disconnecting! status: ${connection.current.readyState}`);
     for (let crypto of list.current) {
         let channel = {event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.pair}`}};
         connection.current.send(JSON.stringify(channel));};
-    connection.current.close();};
+    connection.current.close(); connection.current = null;
+};
 };
 
-useEffect(() => {subscribe(); return () => {unsubscribe();};}, []);
+useEffect(() => {subscribe(); return () => {unsubscribe();};}, [active]);
 
 // Setting of the [columns] required to build the <Table> component
 const columns = [
@@ -50,11 +54,12 @@ let data = list.current.map(currency => {let key=currency.pair, price = quotes[c
 
 return (
     <>
-    <Table 
+    <Table
         dataSource={data}
         columns={columns}
         showHeader={false}
         pagination={false}
+        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setActive(checked);}} /></div>}
         size='small' />
     </>);
 };

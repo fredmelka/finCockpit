@@ -7,7 +7,7 @@ import {Button, Card, Empty, Popover, Space, Tabs} from 'antd';
 import SecurityProfile from '../components/Security.Profile.jsx';
 import SecurityMetrics from '../components/Security.Metrics.jsx';
 import SecurityQuote from '../components/Security.Quote.jsx';
-import SecurityReturns from '../components/Security.Returns.jsx';
+import SecurityReturns from '../components/Security.Return.jsx';
 
 import {_FMPapikey_1} from '../utils/Keys.js';
 
