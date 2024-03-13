@@ -46,8 +46,14 @@ main {
 
 .webName {
   padding: 1em 0 2em 0;
-  & i {color: #12934f;};
-  & h1 {color: #2f54eb;};
+  will-change: filter;
+  transition: filter 300ms;
+  
+    & i {color: #12934f;};
+    & h1 {color: #2f54eb;};
+}
+.webName:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
 
 .plastic {

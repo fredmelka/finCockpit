@@ -6,30 +6,30 @@ import cryptoCurrencies from '../data/Cryptos.json';
 export default function LiveCryptoCurrencies () {
 
 let [quotes, setQuotes] = useState({});
-let [active, setActive] = useState(true);
+let [hold, setHold] = useState(false);
+// React useRef() approach to avoid reloading Ref contents (especially if expensive objects)
 let connection = useRef(null); if (connection.current === null) {connection.current = new WebSocket(`wss://ws.bitstamp.net`);};
 let list = useRef(null); if (list.current === null) {list.current = cryptoCurrencies;};
-// React approach to avoid reloading Ref contents (especially if expensive objects)
 
 let subscribe = () => {
-if (!active) {return;}; setQuotes({});
+if (hold) {return;};
+setQuotes({});
 connection.current.onopen = (event) => {
 for (let crypto of list.current) {
     let channel = {event: 'bts:subscribe', data: {channel: `live_trades_${crypto.pair}`}};
     connection.current.send(JSON.stringify(channel));};
-console.log(`Connected to Websocket!`);
+console.log(`Connected to Websocket! readyState ${connection.current.readyState}`);
 };
 connection.current.onmessage = (event) => {
 let message = JSON.parse(event.data); let newTrade = {};
 if (message.data.price) {
     newTrade[message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)] = message.data.price;
-    console.log(newTrade);
-    setQuotes(quotes => ({...quotes, ...newTrade}));};
+    setQuotes(quotes => ({...quotes, ...newTrade})); console.log(newTrade);};
 };
 };
 
 let unsubscribe = () => {
-if (!active) {return;};
+if (hold) {return;};
 if (connection.current.readyState > 0) {console.log(`Disconnecting! status: ${connection.current.readyState}`);
     for (let crypto of list.current) {
         let channel = {event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.pair}`}};
@@ -38,9 +38,8 @@ if (connection.current.readyState > 0) {console.log(`Disconnecting! status: ${co
 };
 };
 
-useEffect(() => {subscribe(); return () => {unsubscribe();};}, [active]);
+useEffect(() => {subscribe(); return () => {unsubscribe();};}, [hold]);
 
-// Setting of the [columns] required to build the <Table> component
 const columns = [
     {title: 'Crypto', dataIndex: 'crypto', key: 'crypto', align: 'left', width: 50,
                     render: (_, record) => (<Avatar src={record.img} />)},
@@ -59,7 +58,7 @@ return (
         columns={columns}
         showHeader={false}
         pagination={false}
-        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setActive(checked);}} /></div>}
+        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>}
         size='small' />
     </>);
 };

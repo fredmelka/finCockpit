@@ -22,23 +22,20 @@ let [data, setData] = useState([]);
 let [messageApi, contextHolder] = message.useMessage();
 let messagePop = (type, value) => messageApi.open({type: type, content: value});
 
-// Function that builds [dataSource] required to render the <Table> component
 let getData = async () => {
     let info = [];
     messagePop('loading', 'Loading data, please wait!');
-    for (let i=0; i < securitiesList.length; i++) {
-        try {
-            let responseProfile2 = await axios.get(`${urlFinnhub_CompanyProfile2}${securitiesList[i]}&token=${_FinnhubToken_1}`);
-            let profile = responseProfile2.data;
+    for (let i = 0; i < securitiesList.length; i++) {
+    try {
+        let responseProfile2 = await axios.get(`${urlFinnhub_CompanyProfile2}${securitiesList[i]}&token=${_FinnhubToken_1}`);
+        let profile = responseProfile2.data;
+        let responseRecommendation = await axios.get(`${urlFinnhub_CompanyRecommendation}${securitiesList[i]}&token=${_FinnhubToken_2}`);            
+        let lastReco = responseRecommendation.data[0];
 
-            let responseRecommendation = await axios.get(`${urlFinnhub_CompanyRecommendation}${securitiesList[i]}&token=${_FinnhubToken_2}`);            
-            let lastReco = responseRecommendation.data[0];
-
-            let securityData = Object.assign(profile, lastReco);
-            console.log(securityData);
-            if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData]};
-        }
-        catch (error) {console.log(error)};
+        let securityData = Object.assign(profile, lastReco); console.log(securityData);
+        if (Object.keys(securityData).length > 0) {securityData.key = i; info = [...info, securityData]};
+    }
+    catch (error) {console.log(error)};
     };
     setData(info);
     messagePop('success', 'Data retrieved!');
@@ -46,7 +43,6 @@ let getData = async () => {
 
 useEffect(() => {getData()}, [securitiesList]);
 
-// Setting of the [Columns] required to build the <Table> component
 const columns = [
     {title: 'Ticker', dataIndex: 'ticker', key: 'ticker',
                     render: (_, record) => (<Tag color='geekblue-inverse'>{record.ticker}</Tag>)},
