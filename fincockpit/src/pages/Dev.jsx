@@ -2,7 +2,7 @@
 import {Space} from 'antd';
 import LiveBlueChips from '../components/Live.Stocks.jsx';
 
-export default function Quoter () {
+export default function Development () {
 
 return (
     <>

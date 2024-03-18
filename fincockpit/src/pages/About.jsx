@@ -1,5 +1,4 @@
 
-import React from 'react';
 import {Card, Space, Typography} from 'antd';
 
 export default function About () {

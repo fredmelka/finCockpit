@@ -21,8 +21,8 @@
     },
     {
         "name": "Berkshire Hathaway Inc.",
-        "ticker": "BRK-A",
-        "img": "./assets/equities/BRK.A.svg"
+        "ticker": "BRK.B",
+        "img": "./assets/equities/BRK.B.svg"
     },
     {
         "name": "Eli Lilly and Company",

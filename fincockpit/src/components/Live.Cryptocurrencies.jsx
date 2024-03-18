@@ -47,7 +47,7 @@ const columns = [
     {title: 'Crypto', dataIndex: 'crypto', key: 'crypto', align: 'left', width: 50,
                     render: (_, record) => (<Avatar src={record.img} />)},
     {title: 'Name', dataIndex: 'name', key: 'name',  width: 200,
-                    render: (_, record) => (<><Tag color='lightgray'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
+                    render: (_, record) => (<><Tag color='#5b8c00'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
                     render: (_, record) => (record.price && <strong>{record.price} $</strong>)}                
 ];

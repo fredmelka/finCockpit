@@ -14,7 +14,7 @@ import Signup       from '../pages/Signup.jsx';
 import Watchlist    from '../pages/Watchlist.jsx';
 import Welcome      from '../pages/Welcome.jsx';
 
-import Quoter       from '../pages/Quoter.jsx'; // Temporary Development page
+import Development  from '../pages/Dev.jsx'; // Temporary Development page
 
 import './App.css';
 
@@ -37,7 +37,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/login' element={<Login />} />
     <Route path='/signup' element={<Signup />} />
 
-    <Route path='/quoter' element={<Quoter />} />
+    <Route path='/developer' element={<Development />} />
 
     <Route path='*' element={<Oopsies />} />
 

@@ -23,10 +23,11 @@ for (let equity of list.current) {connection.current.send(JSON.stringify({type: 
 console.log(`Connected to Websocket! readyState: ${connection.current.readyState}`);
 };
 connection.current.onmessage = (event) => {
-let message = JSON.parse(event.data); let newTrade = {}; console.log('message', message);
-if (message.data) {
-    newTrade[message.data.s] = message.data.p;
-    setQuotes(quotes => ({...quotes, ...newTrade})); console.log(newTrade);};
+let message = JSON.parse(event.data); let newTrade = {};
+if (message.type === 'trade') {
+    for (let trade of message.data) {newTrade[trade.s] = Math.floor(100 * trade.p) / 100;};
+    console.log(message.data.length + ' trades', newTrade);
+    setQuotes(quotes => ({...quotes, ...newTrade}));};
 };
 };
 
@@ -43,7 +44,7 @@ const columns = [
     {title: 'Ticker', dataIndex: 'equity', key: 'equity', align: 'left', width: 50,
                     render: (_, record) => (<Avatar src={record.img} />)},
     {title: 'Company', dataIndex: 'name', key: 'name',  width: 250,
-                    render: (_, record) => (<><Tag color='lightgray'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
+                    render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
                     render: (_, record) => (record.price && <strong>{record.price} $</strong>)}                
 ];
@@ -53,6 +54,6 @@ let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equ
 return (
     <>
     <Table dataSource={data} columns={columns} showHeader={false} pagination={false} size='small'
-        footer={() => <div style={{textAlign:'left'}}><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /><i> live update </i></div>} />
+        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
     </>);
 };
