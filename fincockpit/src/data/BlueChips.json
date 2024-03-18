@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "img": "./assets/equities/MSFT.svg"
+    },
+    {
+        "name": "Apple Inc.",
+        "ticker": "AAPL",
+        "img": "./assets/equities/AAPL.svg"
+    },
+    {
+        "name": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "img": "./assets/equities/NVDA.svg"
+    },
+    {
+        "name": "Alphabet Inc.",
+        "ticker": "GOOG",
+        "img": "./assets/equities/GOOG.svg"
+    },
+    {
+        "name": "Berkshire Hathaway Inc.",
+        "ticker": "BRK-A",
+        "img": "./assets/equities/BRK.A.svg"
+    },
+    {
+        "name": "Eli Lilly and Company",
+        "ticker": "LLY",
+        "img": "./assets/equities/LLY.svg"
+    },
+    {
+        "name": "Visa",
+        "ticker": "V",
+        "img": "./assets/equities/V.svg"
+    }
+]

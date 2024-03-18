@@ -14,12 +14,14 @@ import Signup       from '../pages/Signup.jsx';
 import Watchlist    from '../pages/Watchlist.jsx';
 import Welcome      from '../pages/Welcome.jsx';
 
+import Quoter       from '../pages/Quoter.jsx'; // Temporary Development page
+
 import './App.css';
 
 export default function App() {
 
 // Declare here variable 'router' under which all routes and paths are set for web navigation
-const router = createBrowserRouter( createRoutesFromElements(
+const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Root />} errorElement={<ErrorPage />}>
 
     <Route index='true' element={<Welcome />} />
@@ -34,6 +36,8 @@ const router = createBrowserRouter( createRoutesFromElements(
 
     <Route path='/login' element={<Login />} />
     <Route path='/signup' element={<Signup />} />
+
+    <Route path='/quoter' element={<Quoter />} />
 
     <Route path='*' element={<Oopsies />} />
 

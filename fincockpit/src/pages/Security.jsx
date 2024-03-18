@@ -4,6 +4,7 @@ import {useParams, useOutletContext, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {Button, Card, Empty, Popover, Space, Tabs} from 'antd';
 
+import SecurityDescription from '../components/Security.Description.jsx';
 import SecurityProfile from '../components/Security.Profile.jsx';
 import SecurityMetrics from '../components/Security.Metrics.jsx';
 import SecurityQuote from '../components/Security.Quote.jsx';
@@ -69,11 +70,12 @@ useEffect(() => {getQuote(ticker);}, [ticker]);
 useEffect(() => {getReturns(ticker);}, [ticker]);
 
 let items = [
-    {key: '1', label: 'Company profile', children: (<SecurityProfile profile={profile} />)},
-    {key: '2', label: 'Market quote', children: (<SecurityQuote quote={quote} profile={profile} />)},
-    {key: '3', label: 'Stock returns', children: (<SecurityReturns returns={returns} />)},
-    {key: '4', label: 'Fundamentals', children: (<SecurityMetrics metrics={metrics} profile={profile} />)},
-    {key: '5', label: 'Charts', children: (<></>)},
+    {key: '1', label: 'Description', children: (<SecurityDescription profile={profile} />)},
+    {key: '2', label: 'Profile', children: (<SecurityProfile profile={profile} />)},
+    {key: '3', label: 'Quote', children: (<SecurityQuote quote={quote} profile={profile} />)},
+    {key: '4', label: 'Returns', children: (<SecurityReturns returns={returns} />)},
+    {key: '5', label: 'Fundamentals', children: (<SecurityMetrics metrics={metrics} profile={profile} />)},
+    {key: '6', label: 'Charts', children: (<></>)},
 ];
 
 return (

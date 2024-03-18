@@ -3,12 +3,15 @@ import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
 import cryptoCurrencies from '../data/Cryptos.json';
 
+// API WebSocket Bitstamp
+const urlWebSocket_cryptoCurrencies = 'wss://ws.bitstamp.net';
+
 export default function LiveCryptoCurrencies () {
 
 let [quotes, setQuotes] = useState({});
 let [hold, setHold] = useState(false);
 // React useRef() approach to avoid reloading Ref contents (especially if expensive objects)
-let connection = useRef(null); if (connection.current === null) {connection.current = new WebSocket(`wss://ws.bitstamp.net`);};
+let connection = useRef(null); if (connection.current === null) {connection.current = new WebSocket(urlWebSocket_cryptoCurrencies);};
 let list = useRef(null); if (list.current === null) {list.current = cryptoCurrencies;};
 
 let subscribe = () => {
@@ -18,7 +21,7 @@ connection.current.onopen = (event) => {
 for (let crypto of list.current) {
     let channel = {event: 'bts:subscribe', data: {channel: `live_trades_${crypto.pair}`}};
     connection.current.send(JSON.stringify(channel));};
-console.log(`Connected to Websocket! readyState ${connection.current.readyState}`);
+console.log(`Connected to Websocket! readyState: ${connection.current.readyState}`);
 };
 connection.current.onmessage = (event) => {
 let message = JSON.parse(event.data); let newTrade = {};
@@ -30,7 +33,7 @@ if (message.data.price) {
 
 let unsubscribe = () => {
 if (hold) {return;};
-if (connection.current.readyState > 0) {console.log(`Disconnecting! status: ${connection.current.readyState}`);
+if (connection.current.readyState > 0) {console.log(`Disconnecting! readyState: ${connection.current.readyState}`);
     for (let crypto of list.current) {
         let channel = {event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.pair}`}};
         connection.current.send(JSON.stringify(channel));};
@@ -53,12 +56,7 @@ let data = list.current.map(currency => {let key=currency.pair, price = quotes[c
 
 return (
     <>
-    <Table
-        dataSource={data}
-        columns={columns}
-        showHeader={false}
-        pagination={false}
-        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>}
-        size='small' />
+    <Table dataSource={data} columns={columns} showHeader={false} pagination={false} size='small'
+        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
     </>);
 };
