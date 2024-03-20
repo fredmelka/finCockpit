@@ -16,7 +16,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #003eb3;
   text-decoration: none;
   padding: 1vh 1vw;
 }
@@ -47,6 +47,18 @@ main {
 }
 .webName:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.up {animation: pulseUp 1s 2;}
+@keyframes pulseUp {
+  0%, 100% {filter: none;}
+  50% {filter: drop-shadow(0 0 0.25em #092b00);}
+}
+
+.down {animation: pulseDown 1s 2;}
+@keyframes pulseDown {
+  0%, 100% {filter: none;}
+  50% {filter: drop-shadow(0 0 0.25em #5c0011);}
 }
 
 .plastic {

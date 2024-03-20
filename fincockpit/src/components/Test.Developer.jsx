@@ -1,14 +1,14 @@
 
 import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
-import Quoter from '../components/Live.Quoter.jsx';
+import Quoter from './Live.Quoter.jsx';
 import equities from '../data/BlueChips.json';
 import {_FinnhubToken_1} from '../utils/Keys.js';
 
 // API WebSocket Finnhub
 const urlWebSocket_Trades = `wss://ws.finnhub.io?token=${_FinnhubToken_1}`;
 
-export default function LiveBlueChips () {
+export default function Test () {
 
 let [quotes, setQuotes] = useState({});
 let [hold, setHold] = useState(false);

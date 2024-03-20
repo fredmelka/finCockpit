@@ -2,36 +2,43 @@
     {
         "name": "Microsoft Corporation",
         "ticker": "MSFT",
-        "img": "./assets/equities/MSFT.svg"
+        "img": "./assets/equities/MSFT.svg",
+        "webUrl": "https://www.microsoft.com/en-us"
     },
     {
         "name": "Apple Inc.",
         "ticker": "AAPL",
-        "img": "./assets/equities/AAPL.svg"
+        "img": "./assets/equities/AAPL.svg",
+        "webUrl": "https://www.apple.com/"
     },
     {
         "name": "NVIDIA Corporation",
         "ticker": "NVDA",
-        "img": "./assets/equities/NVDA.svg"
+        "img": "./assets/equities/NVDA.svg",
+        "webUrl": "https://www.nvidia.com/"
     },
     {
         "name": "Alphabet Inc.",
         "ticker": "GOOG",
-        "img": "./assets/equities/GOOG.svg"
+        "img": "./assets/equities/GOOG.svg",
+        "webUrl": "https://abc.xyz/"
     },
     {
         "name": "Berkshire Hathaway Inc.",
         "ticker": "BRK.B",
-        "img": "./assets/equities/BRK.B.svg"
+        "img": "./assets/equities/BRK.B.svg",
+        "webUrl": "https://www.berkshirehathaway.com/"
     },
     {
         "name": "Eli Lilly and Company",
         "ticker": "LLY",
-        "img": "./assets/equities/LLY.svg"
+        "img": "./assets/equities/LLY.svg",
+        "webUrl": "https://www.lilly.com/"
     },
     {
         "name": "Visa",
         "ticker": "V",
-        "img": "./assets/equities/V.svg"
+        "img": "./assets/equities/V.svg",
+        "webUrl": "https://usa.visa.com/"
     }
 ]

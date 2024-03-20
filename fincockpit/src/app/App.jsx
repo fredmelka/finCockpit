@@ -14,7 +14,7 @@ import Signup       from '../pages/Signup.jsx';
 import Watchlist    from '../pages/Watchlist.jsx';
 import Welcome      from '../pages/Welcome.jsx';
 
-import Development  from '../pages/Dev.jsx'; // Temporary Development page
+import Development  from '../pages/Development.jsx'; // Temporary Development page
 
 import './App.css';
 

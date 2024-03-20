@@ -1,6 +1,7 @@
 
 import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
+import Quoter from '../components/Live.Quoter.jsx';
 import cryptoCurrencies from '../data/Cryptos.json';
 
 // API WebSocket Bitstamp
@@ -49,7 +50,7 @@ const columns = [
     {title: 'Name', dataIndex: 'name', key: 'name',  width: 200,
                     render: (_, record) => (<><Tag color='#5b8c00'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-                    render: (_, record) => (record.price && <strong>{record.price} $</strong>)}                
+                    render: (_, record) => (record.price && <Quoter value={record.price} />)}            
 ];
 
 let data = list.current.map(currency => {let key=currency.pair, price = quotes[currency.pair]; return {...currency, price, key}});
