@@ -1,8 +1,7 @@
 
 import {Flex, Space} from 'antd';
-
 import LiveCryptoCurrencies from '../components/Live.Cryptocurrencies.jsx';
-import LiveBlueChips from '../components/Live.Stocks.jsx';
+import LiveEquities from '../components/Live.Equities.jsx';
 
 export default function Welcome () {
 
@@ -14,7 +13,7 @@ return (
         <h1><i>fin</i>Cockpit</h1>
     </Flex>
     <Flex style={{width:'100%'}} justify='space-evenly' wrap='wrap'>
-        <LiveBlueChips />
+        <LiveEquities />
         <LiveCryptoCurrencies />
     </Flex>
     </Space>

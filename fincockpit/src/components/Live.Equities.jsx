@@ -1,14 +1,14 @@
 
 import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
-import Quoter from '../components/Live.Quoter.jsx';
+import Quote from './Live.Quote.jsx';
 import equities from '../data/BlueChips.json';
 import {_FinnhubToken_1} from '../utils/Keys.js';
 
 // API WebSocket Finnhub
 const urlWebSocket_Trades = `wss://ws.finnhub.io?token=${_FinnhubToken_1}`;
 
-export default function LiveBlueChips () {
+export default function LiveEquities () {
 
 let [quotes, setQuotes] = useState({});
 let [hold, setHold] = useState(false);
@@ -47,7 +47,7 @@ const columns = [
     {title: 'Company', dataIndex: 'name', key: 'name',  width: 250,
                     render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-                    render: (_, record) => (record.price && <Quoter value={record.price} />)}
+                    render: (_, record) => (record.price && <Quote value={record.price} />)}
 ];
 
 let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equity.ticker]; return {...equity, price, key}});
@@ -55,6 +55,6 @@ let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equ
 return (
     <>
     <Table dataSource={data} columns={columns} showHeader={false} pagination={false} size='small'
-        footer={() => <div style={{textAlign:'right'}}><i>live update </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
+        footer={() => <div style={{textAlign:'right'}}><i>live </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
     </>);
 };
