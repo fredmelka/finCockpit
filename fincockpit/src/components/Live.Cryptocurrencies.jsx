@@ -28,7 +28,7 @@ connection.current.onmessage = (event) => {
 let message = JSON.parse(event.data); let newTrade = {};
 if (message.data.price) {
     newTrade[message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)] = message.data.price;
-    setQuotes(quotes => ({...quotes, ...newTrade})); console.log(newTrade);};
+    setQuotes(quotes => ({...quotes, ...newTrade}));};
 };
 };
 
@@ -46,11 +46,11 @@ useEffect(() => {subscribe(); return () => {unsubscribe();};}, [hold]);
 
 const columns = [
     {title: 'Crypto', dataIndex: 'crypto', key: 'crypto', align: 'left', width: 50,
-                    render: (_, record) => (<Avatar src={record.img} />)},
+        render: (_, record) => (<Avatar src={record.img} />)},
     {title: 'Name', dataIndex: 'name', key: 'name',  width: 200,
-                    render: (_, record) => (<><Tag color='#5b8c00'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
+        render: (_, record) => (<><Tag color='#5b8c00'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-                    render: (_, record) => (record.price && <Quote value={record.price} />)}            
+        render: (_, record) => (record.price && <Quote value={record.price} />)}            
 ];
 
 let data = list.current.map(currency => {let key=currency.pair, price = quotes[currency.pair]; return {...currency, price, key}});
@@ -58,6 +58,6 @@ let data = list.current.map(currency => {let key=currency.pair, price = quotes[c
 return (
     <>
     <Table dataSource={data} columns={columns} showHeader={false} pagination={false} size='small'
-        footer={() => <div style={{textAlign:'right'}}><i>live </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
+        footer={() => <div style={{textAlign:'right'}}><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
     </>);
 };

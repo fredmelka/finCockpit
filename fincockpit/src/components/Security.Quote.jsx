@@ -1,6 +1,5 @@
 
 import {Descriptions, Tag} from 'antd';
-
 import Signer from './Security.Return.Signer';
 
 export default function SecurityQuote ({quote, profile}) {

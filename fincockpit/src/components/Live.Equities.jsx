@@ -27,7 +27,6 @@ connection.current.onmessage = (event) => {
 let message = JSON.parse(event.data); let newTrade = {};
 if (message.type === 'trade') {
     for (let trade of message.data) {newTrade[trade.s] = Math.floor(100 * trade.p) / 100;};
-    console.log(message.data.length + ' trades', newTrade);
     setQuotes(quotes => ({...quotes, ...newTrade}));};
 };
 };
@@ -43,11 +42,11 @@ useEffect(() => {subscribe(); return () => {unsubscribe();};}, [hold]);
 
 const columns = [
     {title: 'Ticker', dataIndex: 'equity', key: 'equity', align: 'left', width: 50,
-                    render: (_, record) => (<Avatar src={record.img} />)},
+        render: (_, record) => (<Avatar src={record.img} />)},
     {title: 'Company', dataIndex: 'name', key: 'name',  width: 250,
-                    render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
+        render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-                    render: (_, record) => (record.price && <Quote value={record.price} />)}
+        render: (_, record) => (record.price && <Quote value={record.price} />)}
 ];
 
 let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equity.ticker]; return {...equity, price, key}});
@@ -55,6 +54,6 @@ let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equ
 return (
     <>
     <Table dataSource={data} columns={columns} showHeader={false} pagination={false} size='small'
-        footer={() => <div style={{textAlign:'right'}}><i>live </i><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
+        footer={() => <div style={{textAlign:'right'}}><Switch defaultChecked onChange={(checked) => {setHold(!checked);}} /></div>} />
     </>);
 };

@@ -8,7 +8,7 @@ return (
     <>
     <Space direction='vertical'>
     <h2>I am the Development page!</h2>
-    <Test />
+    {/* <Test /> */}
     </Space>
     </>);
 };
