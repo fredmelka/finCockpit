@@ -1,7 +1,7 @@
 
 import {Tag, Typography} from 'antd';
 
-export default function SecurityDescription ({profile}) {
+export default function Description ({profile}) {
 
 let {description, exchangeShortName, symbol, sector} = profile;
 let {Text} = Typography;

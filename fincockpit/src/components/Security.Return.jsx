@@ -2,7 +2,7 @@
 import {Descriptions} from 'antd';
 import Signer from './Security.Return.Signer.jsx';
 
-export default function SecurityReturns ({returns}) {
+export default function Returns ({returns}) {
 
 delete returns.symbol; // Deleting Symbol key from props to avoid its display
 let items = []; let i = 0;

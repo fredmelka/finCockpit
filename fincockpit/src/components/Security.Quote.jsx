@@ -2,7 +2,7 @@
 import {Descriptions, Tag} from 'antd';
 import Signer from './Security.Return.Signer';
 
-export default function SecurityQuote ({quote, profile}) {
+export default function Quote ({quote, profile}) {
 
 let {change, dayLow, dayHigh, earningsAnnouncement, open,
     marketCap, previousClose, price, priceAvg50, priceAvg200, volume} = quote;

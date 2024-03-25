@@ -1,7 +1,7 @@
 
 import {Descriptions, Tag} from 'antd';
 
-export default function SecurityProfile ({profile}) {
+export default function Profile ({profile}) {
 
 let {address, ceo, city, country, exchangeShortName, fullTimeEmployees,
     isin, industry, state, symbol, sector} = profile;

@@ -1,7 +1,7 @@
 
 import {Descriptions} from 'antd';
 
-export default function SecurityFundamental ({metrics, profile}) {
+export default function Fundamental ({metrics, profile}) {
 
 let {calendarYear, date, debtToEquity, dividendYield, enterpriseValue, marketCap,
     netIncomePerShare, period, revenuePerShare, peRatio, roe, symbol} = metrics;

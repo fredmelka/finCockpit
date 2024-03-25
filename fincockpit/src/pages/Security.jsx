@@ -1,14 +1,17 @@
 
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {useParams, useOutletContext, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Button, Card, Empty, Popover, Space, Tabs} from 'antd';
+import {Button, Card, Empty, Popover, Tabs} from 'antd';
+import {useDimensions} from '../hooks/useDimensions.js';
 
-import SecurityDescription from '../components/Security.Description.jsx';
-import SecurityProfile from '../components/Security.Profile.jsx';
-import SecurityFundamental from '../components/Security.Fundamental.jsx';
-import SecurityQuote from '../components/Security.Quote.jsx';
-import SecurityReturns from '../components/Security.Return.jsx';
+import Description from '../components/Security.Description.jsx';
+import Profile from '../components/Security.Profile.jsx';
+import Fundamental from '../components/Security.Fundamental.jsx';
+import Quote from '../components/Security.Quote.jsx';
+import Returns from '../components/Security.Return.jsx';
+
+import Test from '../components/Test.Developer.jsx';
 
 import {_FMPapikey_1} from '../utils/Keys.js';
 
@@ -32,6 +35,9 @@ let [profile, setProfile] = useState({});
 let [metrics, setMetrics] = useState({});
 let [quote, setQuote] = useState({});
 let [returns, setReturns] = useState({});
+
+let componentRef = useRef(null);
+let {width, height} = useDimensions(componentRef);
 
 let getProfile = async (ticker) => {
 try {
@@ -70,12 +76,12 @@ useEffect(() => {getQuote(ticker);}, [ticker]);
 useEffect(() => {getReturns(ticker);}, [ticker]);
 
 let items = [
-    {key: '1', label: 'Description', children: (<SecurityDescription profile={profile} />)},
-    {key: '2', label: 'Profile', children: (<SecurityProfile profile={profile} />)},
-    {key: '3', label: 'Quote', children: (<SecurityQuote quote={quote} profile={profile} />)},
-    {key: '4', label: 'Returns', children: (<SecurityReturns returns={returns} />)},
-    {key: '5', label: 'Fundamentals', children: (<SecurityFundamental metrics={metrics} profile={profile} />)},
-    {key: '6', label: 'Graph', children: (<></>)},
+    {key: '1', label: 'Description', children: (<Description profile={profile} />)},
+    {key: '2', label: 'Profile', children: (<Profile profile={profile} />)},
+    {key: '3', label: 'Quote', children: (<Quote quote={quote} profile={profile} />)},
+    {key: '4', label: 'Returns', children: (<Returns returns={returns} />)},
+    {key: '5', label: 'Fundamentals', children: (<Fundamental metrics={metrics} profile={profile} />)},
+    {key: '6', label: 'Graph', children: (<Test width={width} height={height} />)},
 ];
 
 return (
@@ -88,14 +94,13 @@ return (
             title='Description'>
             {profile.companyName}</Popover>}
         extra={<Button size='small' type='primary' onClick={handleRemove}>Remove</Button>}
-        headStyle={{textAlign: 'left'}}
-        bodyStyle={{textAlign: 'left'}}>
+        style={{textAlign: 'left'}}>
 
-    <Space direction='vertical'>
+    <div ref={componentRef}>
     {profile // to change HERE ***** WHAT TO CHANGE ?? => INVESTIGATE TO REMEMBER AND EVENTUALLY UPDATE !
         ? <Tabs defaultActiveKey='1' size='large' items={items} /*onChange={}*/ />
         : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={false} />}
-    </Space>
+    </div>
     </Card>
     </>);
 };

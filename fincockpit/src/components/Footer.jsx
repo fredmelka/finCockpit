@@ -1,8 +1,8 @@
 
-import React, {useContext}          from 'react';
-import {useNavigate}                from 'react-router-dom';
-import {Divider, Tag, Typography}   from 'antd';
-import {AuthContext}                from '../context/Auth.context.jsx';
+import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Divider, Tag, Typography} from 'antd';
+import {AuthContext} from '../context/Auth.context.jsx';
 
 export default function Footer () {
 
