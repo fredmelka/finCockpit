@@ -19,8 +19,9 @@ const config = {
     xField: 'date',
     yField: 'close',
     // point: {shapeField: 'square', sizeField: 2, colorField: 'navy'},
+    colorField: 'navy',
     style: {lineWidth: 2},
-    width: width,
+    width: width || 700,
     height: 350
 };
 

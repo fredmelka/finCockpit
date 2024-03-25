@@ -13,6 +13,6 @@ for (let change in returns) {
 
 return (
     <>
-    <Descriptions style={{textAlign:'left'}} column={4} size='small' title='Returns' items={items} />
+    <Descriptions style={{textAlign:'left'}} column={4} size='small' title='Price Returns' items={items} />
     </>);
 };

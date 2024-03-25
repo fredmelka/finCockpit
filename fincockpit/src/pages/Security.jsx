@@ -2,7 +2,7 @@
 import {useState, useEffect, useRef} from 'react';
 import {useParams, useOutletContext, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {Button, Card, Empty, Popover, Tabs} from 'antd';
+import {Button, Card, Popover, Tag} from 'antd';
 import {useDimensions} from '../hooks/useDimensions.js';
 
 import Description from '../components/Security.Description.jsx';
@@ -36,6 +36,9 @@ let [metrics, setMetrics] = useState({});
 let [quote, setQuote] = useState({});
 let [returns, setReturns] = useState({});
 
+let [activeTab, setActiveTab] = useState(0);
+let handleTabChange = (key) => {setActiveTab(key);};
+
 let componentRef = useRef(null);
 let {width, height} = useDimensions(componentRef);
 
@@ -65,8 +68,7 @@ catch (error) {console.log(error);};
 };
 let handleRemove = async () => {
     await removeSecurityFromWatchlist(security);
-    setProfile({}); setSecurity();
-    navigate('/watchlist');
+    setProfile({}); setSecurity(); navigate('/watchlist');
 };
 
 useEffect(() => {setSecurity(ticker);}, [ticker]);
@@ -75,32 +77,35 @@ useEffect(() => {getMetrics(ticker);}, [ticker]);
 useEffect(() => {getQuote(ticker);}, [ticker]);
 useEffect(() => {getReturns(ticker);}, [ticker]);
 
-let items = [
-    {key: '1', label: 'Description', children: (<Description profile={profile} />)},
-    {key: '2', label: 'Profile', children: (<Profile profile={profile} />)},
-    {key: '3', label: 'Quote', children: (<Quote quote={quote} profile={profile} />)},
-    {key: '4', label: 'Returns', children: (<Returns returns={returns} />)},
-    {key: '5', label: 'Fundamentals', children: (<Fundamental metrics={metrics} profile={profile} />)},
-    {key: '6', label: 'Graph', children: (<Test width={width} height={height} />)},
+const tabs = [
+    {key: 0, label: 'Description'},
+    {key: 1, label: 'Profile'},
+    {key: 2, label: 'Quote'},
+    {key: 3, label: 'Returns'},
+    {key: 4, label: 'Fundamentals'},
+    {key: 5, label: 'Graph'},
 ];
+
+const content = {
+    0: (<Description profile={profile} />),
+    1: (<Profile profile={profile} />),
+    2: (<Quote quote={quote} profile={profile} />),
+    3: (<Returns returns={returns} />),
+    4: (<Fundamental metrics={metrics} profile={profile} />),
+    5: (<div ref={componentRef}><Test width={width} height={height} /></div>)
+};
 
 return (
     <>
     <Card
-        bordered
-        title={<Popover
-            content={profile.description}
-            placement='rightTop'
-            title='Description'>
-            {profile.companyName}</Popover>}
+        title={<Popover content={<Tag color='geekblue-inverse'>{profile.symbol}</Tag>} placement='rightTop' title='Coming Live Chart'>{profile.companyName}</Popover>}
         extra={<Button size='small' type='primary' onClick={handleRemove}>Remove</Button>}
-        style={{textAlign: 'left'}}>
-
-    <div ref={componentRef}>
-    {profile // to change HERE ***** WHAT TO CHANGE ?? => INVESTIGATE TO REMEMBER AND EVENTUALLY UPDATE !
-        ? <Tabs defaultActiveKey='1' size='large' items={items} /*onChange={}*/ />
-        : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={false} />}
-    </div>
+        style={{textAlign: 'left'}}
+        tabList={tabs}
+        activeTabKey={activeTab}
+        onTabChange={handleTabChange}
+    >
+    {profile && content[activeTab]}
     </Card>
     </>);
 };
