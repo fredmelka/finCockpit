@@ -1,13 +1,13 @@
 
-import React, {useState, useContext} from 'react';
-import {Input, Space, Typography} from 'antd';
+import {useState, useContext} from 'react';
+import {Alert, Input, Space} from 'antd';
 import {AuthContext} from '../context/Auth.context.jsx';
 
 export default function Login () {
 
 let [username, setUsername] = useState();
 let {isLogged, userName, logIn} = useContext(AuthContext);
-let {Search} = Input; let {Text} = Typography;
+let {Search} = Input;
 
 let updateName = (event) => {setUsername(event.target.value)};
 
@@ -24,9 +24,9 @@ return (
             placeholder='Username only please!'
             enterButton
             onChange={updateName}
-            onSearch={() => {logIn(username); setUsername();}}/>
+            onSearch={() => {logIn(username); setUsername();}} />
 
-        {isLogged && <Text type='success'>You are successfully logged in {userName}!</Text>}
+        {isLogged && <Alert type='info' message={`You are successfully logged in ${userName}!`} />}
     </Space>
     </>);
 };

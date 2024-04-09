@@ -2,18 +2,12 @@
 import {useState, useRef} from 'react';
 import {Select, Space} from 'antd';
 import {Line} from '@ant-design/charts';
-import HistoTest from '../data/TestHistorical.json'; // TMP HARD DATA
 import {_FMPapikey_1} from '../utils/Keys.js';
 
-// API Endpoint DAILY_CHART_EOD
-const urlEndpointFMP_historicalPrice = 'https://financialmodelingprep.com/api/v3/historical-price-full/';
-
-export default function Test () {
-
-let [width, height] = [700, 350]; // TMP HARD DATA
+export default function Chart ({timeSerie, width, height}) {
 
 // React useRef() approach to avoid reloading Ref contents (especially if expensive objects)
-let data = useRef(null); if (data.current === null) {data.current = HistoTest.historical.map((point) => ({...point, date: new Date(point.date)}));};
+let data = useRef(null); if (data.current === null) {data.current = timeSerie.map((point) => ({...point, date: new Date(point.date)}));};
 let [dataToDisplay, setDataToDisplay] = useState(null);
 
 let handleChart = (value) => {let currentDate = new Date();
@@ -62,7 +56,7 @@ const config = {
     colorField: '#12934f',
     style: {lineWidth: 2},
     width: width || 700,
-    height: height,
+    height: 350,
     tooltip: {title: (point) => `${new Date(point.date).toDateString()} @ ${point.close}`, items: false},
     scale: {x: {type: 'time', tickCount: 10, mask: 'MMM-YYYY'}, y: {tickCount: 10}},
     label: {selector: 'first', text: (d) => d.close, dx: -25, dy: 25, textAlign: 'right', style: {fontSize: 10}}

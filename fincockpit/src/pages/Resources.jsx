@@ -11,7 +11,7 @@ return (
     <>
     <h2>I am the Resources page!</h2>
     <Col span={16} offset={4}>
-        <Collapse items={items} size='small' defaultActiveKey={1} onChange={onChange} style={{textAlign: 'left'}} />
+        <Collapse items={items} size='small' defaultActiveKey={0} onChange={onChange} style={{textAlign: 'left'}} />
     </Col>
     </>);
 };

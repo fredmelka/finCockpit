@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import {Button, message, Skeleton, Table, Tag} from 'antd';
 import RatingStar from './RatingStar.jsx';
