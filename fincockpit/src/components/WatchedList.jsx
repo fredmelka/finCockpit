@@ -4,7 +4,7 @@ import {List, Tag} from 'antd';
 
 export default function WatchedList ({watchlist}) {
 
-let navigate= useNavigate();
+let navigate = useNavigate();
 
 return (
     <>

@@ -1,11 +1,11 @@
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Button, Col, Divider, Row, Space} from 'antd';
 import Monitor from '../components/Monitor.jsx';
 import SymbolLookup from '../components/Lookup.Symbol.jsx';
 import IndexLookup from '../components/Lookup.Index.jsx';
 
-export default function Browser () {
+export default function Lookup () {
 
 let [securitiesList, setSecuritiesList] = useState([]);
 let [showLookupBar, setLookupBar] = useState(false);
@@ -15,10 +15,6 @@ let updateMonitor = (array) => setSecuritiesList(array);
 
 return (
     <>
-    <Space direction='vertical' size='middle'>
-        <h2>I am the Securities page!</h2>
-    </Space>
-
     <Divider orientation='left'>
         <Button onClick={() => setLookupBar(!showLookupBar)}>
             {showLookupBar ? 'Hide' : 'Open'} Symbol Lookup

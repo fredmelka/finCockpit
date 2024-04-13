@@ -1,14 +1,38 @@
 [
     {
-        "question": "Where is Brian ?... Bryan is in the kitchen!",
-        "answer":  "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus condimentum nisi ipsum, id faucibus dui accumsan at. Nullam quis felis tortor. Morbi porttitor metus nibh, at sodales ligula commodo nec. Vivamus mauris ligula, scelerisque eget libero sed, mattis tincidunt urna. Nunc eleifend neque ac nunc."
+        "question": "How to use finCockpit ?",
+        "answer": "One can publicly access and browse securities but signup for a free account is required to create a watchlist and monitor portfolios."
     },
     {
-        "question": "Is it raining today ?... Where is my umbrella ?!",
-        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non vestibulum mauris, a elementum nulla. Pellentesque nunc nisi, ultricies eget velit in, vulputate pretium velit. Aenean eu ornare arcu. Aenean eu mi purus. Ut rutrum, metus id condimentum facilisis, quam ante cursus lacus, at finibus augue ligula ut nulla. Cras."
+        "question": "How to authenticate ?",
+        "answer": "For a successful authentication, all it takes is a username. Private pages such as watchlist require authentication."
     },
     {
-        "question": "Where is Jenny ?! the sister of the Bryan?!..",
-        "answer": "She is in the bathroom!"
+        "question": "What frameworks are empowering finCockpit ?",
+        "answer":  "Stack technology is lightweighted version of MERN. Mongo (noSQL database) + Express (server) + React (client framework) + Node (engine). Ant Design library of components is also leveraged for UI."
+    },
+    {
+        "question": "Where finCockpit information is sourced from ?",
+        "answer":  "finCockpit leverages on several financial APIs to fetch data. Since all accesses are free plans, data is pretty much restricted to US stocks. As standard, all application programming interfaces have limit thresholds. Call limits depend on each provider plan.",
+        "illustration": ""
+    },
+    {
+        "question": "How are powered the most active securities sections ?",
+        "answer":  "WebSocket protocol provides with full-duplex communications channels over a single TCP connection. The WebSocket protocol was standardized by the IETF as RFC 6455 in 2011, and the WebSocket API in Web IDL is being standardized by the W3C. Each section display last live trading price of the given underlying. A coloured mark will flash twice when the price moves more than .1% from the previous recorded level.",
+        "illustration": "https://websockets.readthedocs.io/en/stable/."
+    },
+    {
+        "question": "What financial markets can be browsed ?",
+        "answer": "Since free plans are used, access is mostly restricted to american stock exchanges. One other general equity universe is added.",
+        "illustration": ""
+    },
+    {
+        "question": "How is computed the score for each stock ?",
+        "answer": "Each security in the monitor displays a rating, from 0 to 5 stars, with half-notch precision. It is determined from a proprietary model grounded on bank analysts recommendations.",
+        "illustration": ""
+    },
+    {
+        "question": "Can one make commercial use ?",
+        "answer": "No commercial use of the finCockpit is allowed. The application is made only for showcase and learning purposes."
     }
 ]

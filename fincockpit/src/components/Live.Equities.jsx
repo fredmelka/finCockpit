@@ -43,7 +43,7 @@ useEffect(() => {subscribe(); return () => {unsubscribe();};}, [hold]);
 const columns = [
     {title: 'Ticker', dataIndex: 'equity', key: 'equity', align: 'left', width: 50,
         render: (_, record) => (<Avatar src={record.img} />)},
-    {title: 'Company', dataIndex: 'name', key: 'name',  width: 250,
+    {title: 'Company', dataIndex: 'name', key: 'name', width: 250,
         render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
         render: (_, record) => (record.price && <Quote value={record.price} />)}

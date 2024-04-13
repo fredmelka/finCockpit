@@ -16,17 +16,17 @@ return (
     <h2>I am the Login page!</h2>
     <h3>Please enter your username to sign in:</h3>
     <Space direction='vertical'>
-        <Search
-            addonBefore='Client'
-            allowClear
-            type='text'
-            value={username}
-            placeholder='Username only please!'
-            enterButton
-            onChange={updateName}
-            onSearch={() => {logIn(username); setUsername();}} />
+    <Search
+        addonBefore='Client'
+        allowClear
+        type='text'
+        value={username}
+        placeholder='Username only please!'
+        enterButton
+        onChange={updateName}
+        onSearch={() => {logIn(username); setUsername();}} />
 
-        {isLogged && <Alert type='info' message={`You are successfully logged in ${userName}!`} />}
+    {isLogged && <Alert type='info' message={`You are successfully logged in ${userName}!`} />}
     </Space>
     </>);
 };
