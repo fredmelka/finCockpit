@@ -2,7 +2,7 @@
 import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
 import Quote from './Live.Quote.jsx';
-import equities from '../data/Bluechips.json';
+import equities from '../data/Equities.json';
 import {_FinnhubToken_1} from '../utils/Keys.js';
 
 // API WebSocket Finnhub
