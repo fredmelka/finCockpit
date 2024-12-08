@@ -1,6 +1,6 @@
 
 import {Collapse, Col} from 'antd';
-import FAQs from '../data/FAQ.json';
+import FAQs from '../data/FAQs.json';
 
 export default function Resources () {
 
