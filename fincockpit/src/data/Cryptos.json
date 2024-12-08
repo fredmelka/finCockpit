@@ -4,48 +4,55 @@
         "ticker": "BTC",
         "img": "./assets/currencies/BTC.svg",
         "pair": "btcusd",
-        "webUrl": "https://www.bitstamp.net/markets/btc/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/btc/usd/",
+        "precision": 0
     },
     {
         "name": "Ethereum",
         "ticker": "ETH",
         "img": "./assets/currencies/ETH.svg",
         "pair": "ethusd",
-        "webUrl": "https://www.bitstamp.net/markets/eth/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/eth/usd/",
+        "precision": 1
     },
     {
         "name": "Tether",
         "ticker": "USDT",
         "img": "./assets/currencies/USDT.svg",
         "pair": "usdtusd",
-        "webUrl": "https://www.bitstamp.net/markets/usdt/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/usdt/usd/",
+        "precision": 5
     },
     {
         "name": "Solana",
         "ticker": "SOL",
         "img": "./assets/currencies/SOL.svg",
         "pair": "solusd",
-        "webUrl": "https://www.bitstamp.net/markets/sol/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/sol/usd/",
+        "precision": 4
     },
     {
         "name": "XRP",
         "ticker": "XRP",
         "img": "./assets/currencies/XRP.svg",
         "pair": "xrpusd",
-        "webUrl": "https://www.bitstamp.net/markets/xrp/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/xrp/usd/",
+        "precision": 5
     },
     {
         "name": "USD Coin",
         "ticker": "USDC",
         "img": "./assets/currencies/USDC.svg",
         "pair": "usdcusd",
-        "webUrl": "https://www.bitstamp.net/markets/usdc/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/usdc/usd/",
+        "precision": 5
     },
     {
         "name": "Cardano",
         "ticker": "ADA",
         "img": "./assets/currencies/ADA.svg",
         "pair": "adausd",
-        "webUrl": "https://www.bitstamp.net/markets/ada/usd/"
+        "webUrl": "https://www.bitstamp.net/markets/ada/usd/",
+        "precision": 5
     }
 ]

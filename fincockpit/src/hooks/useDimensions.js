@@ -11,7 +11,7 @@ const useDimensions = (ref) => {
     return useMemo(() => JSON.parse(dimensions), [dimensions]);
 };
 
-/* Version 1
+/*** Version 1
 const useDimensions = (ref) => {
     let [dimensions, setDimensions] = useState({width: 0, height: 0});
     useEffect(() => {
@@ -22,7 +22,6 @@ const useDimensions = (ref) => {
         return () => {window.onresize = null;};
     }, [ref]);
 return dimensions;
-};
-*/
+}; */
 
 export {useDimensions};

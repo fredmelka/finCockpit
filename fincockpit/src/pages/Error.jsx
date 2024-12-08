@@ -1,5 +1,4 @@
 
-import React from 'react';
 import {useNavigate, useRouteError} from 'react-router-dom';
 
 export default function ErrorPage() {
@@ -16,8 +15,7 @@ return (
     <br/>
     A web developer should get this issue fixed shortly.
     <br/>
-    <strong onClick={returnHome}>Return to Home page!</strong>
-    </p>
+    <strong onClick={returnHome}>Return to Home page!</strong></p>
     <p><code>{error.statusText || error.message}</code></p>
     </>);
 };

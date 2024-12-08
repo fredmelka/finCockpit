@@ -3,8 +3,7 @@ import {Descriptions, Tag} from 'antd';
 
 export default function Profile ({profile}) {
 
-let {address, ceo, city, country, exchangeShortName, fullTimeEmployees,
-    isin, industry, state, symbol, sector} = profile;
+let {address, ceo, city, country, exchangeShortName, fullTimeEmployees, isin, industry, state, symbol, sector} = profile;
 
 let items = [
     {key: '1', label: 'Symbol', children: (<><Tag>{symbol}</Tag><Tag color='black'>{exchangeShortName}</Tag></>)},

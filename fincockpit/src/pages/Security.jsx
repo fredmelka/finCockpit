@@ -5,12 +5,12 @@ import axios from 'axios';
 import {Button, Card, Popover, Tag} from 'antd';
 import {useDimensions} from '../hooks/useDimensions.js';
 
+import Chart from '../components/Security.Chart.jsx';
 import Description from '../components/Security.Description.jsx';
+import Fundamental from '../components/Security.Fundamental.jsx';
 import Profile from '../components/Security.Profile.jsx';
 import Quote from '../components/Security.Quote.jsx';
 import Returns from '../components/Security.Return.jsx';
-import Fundamental from '../components/Security.Fundamental.jsx';
-import Chart from '../components/Security.Chart.jsx';
 
 import {_FMPapikey_1} from '../utils/Keys.js';
 

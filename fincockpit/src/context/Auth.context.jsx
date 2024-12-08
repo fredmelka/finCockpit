@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import {redirect} from 'react-router-dom'; // look for https://reactrouter.com/en/main/fetch/redirect instead of useNavigate
+import {redirect} from 'react-router-dom'; // Look for https://reactrouter.com/en/main/fetch/redirect instead of useNavigate
 import {message} from 'antd';
 import {getUser} from '../utils/Crud.js';
 

@@ -39,10 +39,19 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/signup' element={<Signup />} />
     <Route path='/developer' element={<Development />} />
     <Route path='*' element={<Oopsies />} />
-</Route>));
+</Route>),
+/*** Migration Steps as Future flags for migration towards React-Router v7.
+ * https://reactrouter.com/6.28.0/upgrading/future | https://remix.run/blog/future-flags */
+{future: {
+    v7_relativeSplatPath: true,
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_skipActionErrorRevalidation: true}}
+);
 
 return (
   <>
-  <RouterProvider router={router} />
+  <RouterProvider router={router} future={{v7_startTransition: true}} /> {/* Future flags for migration towards React-Router v7 */}
   </>);
 };

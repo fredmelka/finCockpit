@@ -33,13 +33,13 @@ const options = [
 return (
     <>
     <Space direction='vertical'>
-        <Select
-            style={{width: 300}}
-            allowClear
-            options={options}
-            placeholder='Dow Jones, Nasdaq, etc.'
-            onChange={updateLookup}
-            onSelect={getIndexMembers} />
+    <Select
+        style={{width: 300}}
+        allowClear
+        options={options}
+        placeholder='Dow Jones, Nasdaq, etc.'
+        onChange={updateLookup}
+        onSelect={getIndexMembers} />
     </Space>
     </>);
 };

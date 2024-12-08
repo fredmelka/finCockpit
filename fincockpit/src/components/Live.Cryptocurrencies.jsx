@@ -19,27 +19,23 @@ let subscribe = () => {
 if (hold) {return;};
 setQuotes({});
 connection.current.onopen = (event) => {
-for (let crypto of list.current) {
-    let channel = {event: 'bts:subscribe', data: {channel: `live_trades_${crypto.pair}`}};
-    connection.current.send(JSON.stringify(channel));};
+for (let crypto of list.current) {connection.current.send(JSON.stringify({event: 'bts:subscribe', data: {channel: `live_trades_${crypto.pair}`}}));};
 console.log(`Connected to Websocket! readyState: ${connection.current.readyState}`);
 };
 connection.current.onmessage = (event) => {
 let message = JSON.parse(event.data); let newTrade = {};
 if (message.data.price) {
-    newTrade[message.channel.slice(message.channel.lastIndexOf('_') + 1 - message.channel.length)] = message.data.price;
+    newTrade[message.channel.slice(message.channel.lastIndexOf('_') + 1)] = message.data.price;
     setQuotes(quotes => ({...quotes, ...newTrade}));};
 };
 };
 
 let unsubscribe = () => {
 if (hold) {return;};
-if (connection.current.readyState > 0) {console.log(`Disconnecting! readyState: ${connection.current.readyState}`);
-    for (let crypto of list.current) {
-        let channel = {event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.pair}`}};
-        connection.current.send(JSON.stringify(channel));};
-    connection.current.close(); connection.current = null;
-};
+if (connection.current.readyState > 0) {
+    console.log(`Disconnecting! readyState: ${connection.current.readyState}`);
+    for (let crypto of list.current) {connection.current.send(JSON.stringify({event: 'bts:unsubscribe', data: {channel: `live_trades_${crypto.pair}`}}));};
+    connection.current.close(); connection.current = null;};
 };
 
 useEffect(() => {subscribe(); return () => {unsubscribe();};}, [hold]);
@@ -50,10 +46,10 @@ const columns = [
     {title: 'Name', dataIndex: 'name', key: 'name', width: 200,
         render: (_, record) => (<><Tag color='#5b8c00'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-        render: (_, record) => (record.price && <Quote value={record.price} />)}
+        render: (_, record) => (record.price && <Quote value={record.price} precision={record.precision} />)} // Precision is passed explicitly as useful
 ];
 
-let data = list.current.map(currency => {let key=currency.pair, price = quotes[currency.pair]; return {...currency, price, key}});
+let data = list.current.map(currency => {let key = currency.pair, price = quotes[currency.pair]; return {...currency, price, key}});
 
 return (
     <>

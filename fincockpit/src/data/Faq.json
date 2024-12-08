@@ -9,7 +9,7 @@
     },
     {
         "question": "What frameworks are empowering finCockpit ?",
-        "answer":  "Stack technology is lightweighted version of MERN. Mongo (noSQL database) + Express (server) + React (client framework) + Node (engine). Ant Design library of components is also leveraged for UI."
+        "answer":  "Stack technology is a lightweighted version of MERN. MongoDB (noSQL) + Express (server) + React (client framework) + Node (engine). Ant Design library of components is also leveraged for UI."
     },
     {
         "question": "Where finCockpit information is sourced from ?",
@@ -18,12 +18,12 @@
     },
     {
         "question": "How are powered the most active securities sections ?",
-        "answer":  "WebSocket protocol provides with full-duplex communications channels over a single TCP connection. The WebSocket protocol was standardized by the IETF as RFC 6455 in 2011, and the WebSocket API in Web IDL is being standardized by the W3C. Each section display last live trading price of the given underlying. A coloured mark will flash twice when the price moves more than .1% from the previous recorded level.",
+        "answer":  "WebSocket protocol provides with full-duplex communications channels over a single TCP connection. The WebSocket protocol was standardized by the IETF as RFC 6455 in 2011, and the WebSocket API in Web IDL is being standardized by the W3C. Each section displays the last live trading price of given underlyings. A coloured mark will flash twice when the price moves by more than 0.1% (10 basis points) from the previous recorded level (green for upticks, red for falls).",
         "illustration": "https://websockets.readthedocs.io/en/stable/."
     },
     {
-        "question": "What financial markets can be browsed ?",
-        "answer": "Since free plans are used, access is mostly restricted to american stock exchanges. One other general equity universe is added.",
+        "question": "What exchanges can be browsed ?",
+        "answer": "Since free plans are used, access is mostly restricted to american stock markets. One additional global equity universe is provided for now.",
         "illustration": ""
     },
     {
@@ -32,7 +32,7 @@
         "illustration": ""
     },
     {
-        "question": "Can one make commercial use ?",
-        "answer": "No commercial use of the finCockpit is allowed. The application is made only for showcase and learning purposes."
+        "question": "Can one make any commercial use ?",
+        "answer": "No business related use of the finCockpit is allowed. The application is made only for showcasing and learning purposes."
     }
 ]

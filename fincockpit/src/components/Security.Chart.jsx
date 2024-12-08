@@ -65,8 +65,8 @@ return (
     <>
     <Space direction='vertical'>
     <Space>
-        <Select placeholder={'Chart Type'} options={chartTypes} onChange={handleChart} style={{textAlign: 'left', width: 250}} />
-        <i>{width} ✖️ {height}</i>
+    <Select placeholder={'Chart Type'} options={chartTypes} onChange={handleChart} style={{textAlign: 'left', width: 250}} />
+    <i>{width} ✖️ {height}</i>
     </Space>
     {dataToDisplay && <Line {...chartConfig} />}
     </Space>

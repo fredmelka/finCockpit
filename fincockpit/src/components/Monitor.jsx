@@ -2,8 +2,9 @@
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import {Button, message, Skeleton, Table, Tag} from 'antd';
-import RatingStar from './RatingStar.jsx';
 import {AuthContext} from '../context/Auth.context.jsx';
+
+import RatingStar from './RatingStar.jsx';
 import {addToWatchlist} from '../utils/Crud.js';
 import {_FinnhubToken_1, _FinnhubToken_2} from '../utils/Keys.js';
 

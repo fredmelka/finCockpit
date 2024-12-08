@@ -2,7 +2,7 @@
 import {useState, useEffect, useRef} from 'react';
 import {Avatar, Switch, Table, Tag} from 'antd';
 import Quote from './Live.Quote.jsx';
-import equities from '../data/BlueChips.json';
+import equities from '../data/Bluechips.json';
 import {_FinnhubToken_1} from '../utils/Keys.js';
 
 // API WebSocket Finnhub
@@ -33,7 +33,8 @@ if (message.type === 'trade') {
 
 let unsubscribe = () => {
 if (hold) {return;};
-if (connection.current.readyState > 0) {console.log(`Disconnecting! readyState: ${connection.current.readyState}`);
+if (connection.current.readyState > 0) {
+    console.log(`Disconnecting! readyState: ${connection.current.readyState}`);
     for (let equity of list.current) {connection.current.send(JSON.stringify({type: 'unsubscribe', symbol: equity.ticker}));};
     connection.current.close(); connection.current = null;};
 };
@@ -46,10 +47,10 @@ const columns = [
     {title: 'Company', dataIndex: 'name', key: 'name', width: 250,
         render: (_, record) => (<><Tag color='geekblue-inverse'>{record.ticker}</Tag><a href={record.webUrl} target='_blank'>{record.name}</a></>)},
     {title: 'Last', dataIndex: 'trade', key: 'lastPrice', align: 'right', width: 100,
-        render: (_, record) => (record.price && <Quote value={record.price} />)}
+        render: (_, record) => (record.price && <Quote value={record.price} />)} // Precision is not passed explicitly as default props is 2 digits
 ];
 
-let data = list.current.map(equity => {let key=equity.ticker, price = quotes[equity.ticker]; return {...equity, price, key}});
+let data = list.current.map(equity => {let key = equity.ticker, price = quotes[equity.ticker]; return {...equity, price, key};});
 
 return (
     <>

@@ -1,7 +1,8 @@
 
 import {useState, useEffect, useContext} from 'react';
 import {Outlet} from 'react-router-dom';
-import {Col, message, Row, Space} from 'antd';
+import {Alert, Col, message, Row, Space} from 'antd';
+
 import {AuthContext} from '../context/Auth.context.jsx';
 import WatchedList from '../components/WatchedList.jsx';
 import {getWatchlist, removeFromWatchlist} from '../utils/Crud.js';
@@ -27,23 +28,26 @@ catch (error) {console.log(error);};
 
 useEffect(() => {browseWatchlistFromUser();}, [])
 
-if (!userId) return (<>
+if (!userId) {return (
+    <>
+    <Space direction='vertical' size='middle'>
     <h2>I am the Watchlist page!</h2>
-    <p>You must log in to access data.</p>
+    <Alert type='info' message='You must log in to access data!' />
+    </Space>
     </>);
+};
 
 return (
     <>
     {contextHolder}
     <h2>I am the Watchlist page!</h2>
-    <Space direction='vertical'/>
     <Row>
-        <Col span={8}>
+        <Col span={7}>
         <WatchedList style={{textAlign:'left'}} watchlist={watchlist} />
         </Col>
-        <Col span={15} offset={1}>
+        <Col span={16} offset={1}>
         <Outlet context={removeSecurityFromWatchlist} />
         </Col>
-    </Row>  
+    </Row>
     </>);
 };
